@@ -58,6 +58,7 @@
                             x:Name="loginButton"
                             Margin="0,20"
                             Text="Login"
+                            Clicked="OnLoginButtonClicked"
                             Style="{StaticResource MainButtonStyle}"/>
                     </StackLayout>
                 </Grid>
