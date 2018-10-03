@@ -10,7 +10,9 @@ namespace MotionRaceBrowser.Views
         {
             InitializeComponent();
             NavigationPage.SetHasNavigationBar(this, false);
-            webView.Source = App.BaseUrl;
+            var htmlSource = new HtmlWebViewSource();
+            htmlSource.Html = App.WebViewHTMLSource;
+            webView.Source = htmlSource;
         }
 
         void OnBackButtonClicked(object sender, EventArgs e)
@@ -30,6 +32,10 @@ namespace MotionRaceBrowser.Views
         }
 
         void OnRefreshButtonClicked(object sender, EventArgs e)
+        {
+        }
+
+        void OnLogoutButtonClicked(object sender, EventArgs e)
         {
         }
     }

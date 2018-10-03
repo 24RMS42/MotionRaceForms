@@ -5,7 +5,7 @@ namespace MotionRaceBrowser.Constant
     {
         public static string BASE = "https://app.motionsrace.com/applogin.aspx";
 
-        #if !TARGET_ANDROID
+        #if TARGET_ANDROID
         public static string ApplicaitonId = "FF89F2F6-EECE-4E84-AB65-59BA8D1F33FD";
         public static string ApplicaitonSecret = "BDB4063F-127E-4158-B521-E9469EB2C35E";
         #else

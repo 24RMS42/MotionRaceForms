@@ -33,7 +33,7 @@ namespace MotionRaceBrowser.Network
                 httpClient.DefaultRequestHeaders.Clear();
                 httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-                var requestUri = "?fbrun=" + email + "&fbrpw=" + password + "&applicationid=" + Constants.ApplicaitonId;
+                var requestUri = "?fbrun=" + email + "&fbrpw=" + password + "&applicationid=" + Constants.ApplicaitonId.ToLower();
                 var request = new HttpRequestMessage(HttpMethod.Get, requestUri);
                 var response = await httpClient.SendAsync(request);
 
@@ -49,7 +49,7 @@ namespace MotionRaceBrowser.Network
                         var loginId = jsonArray["loginid"].ToString();
                         var loginSecret = jsonArray["loginsecret"].ToString();
                         var baseUrl = jsonArray["baseurl"].ToString();
-                        //await AuthUserAsync(loginId, loginSecret, baseUrl);
+                        await AuthUserAsync(loginId, loginSecret, baseUrl);
 
                         App.BaseUrl = baseUrl;
                         IDictionary<string, object> properties = Application.Current.Properties;
@@ -84,7 +84,7 @@ namespace MotionRaceBrowser.Network
             try
             {
                 HMACSHA1 hashAlgorithm = new HMACSHA1();
-                hashAlgorithm.Key = Encoding.ASCII.GetBytes(Constants.ApplicaitonSecret);
+                hashAlgorithm.Key = Encoding.ASCII.GetBytes(Constants.ApplicaitonSecret.ToLower());
                 byte[] bytes = Encoding.ASCII.GetBytes(loginSecret);
                 byte[] hashedBytes = hashAlgorithm.ComputeHash(bytes);
                 string hashedLoginSecret = Convert.ToBase64String(hashedBytes);
@@ -93,7 +93,7 @@ namespace MotionRaceBrowser.Network
                 httpClient.DefaultRequestHeaders.Clear();
                 httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-                var requestUri = "/applogin.aspx?applicationid=" + Constants.ApplicaitonId + "&loginid=" + loginId + "&ticket=" + hashedLoginSecret;
+                var requestUri = "/applogin.aspx?applicationid=" + Constants.ApplicaitonId.ToLower() + "&loginid=" + loginId + "&ticket=" + hashedLoginSecret;
                 var request = new HttpRequestMessage(HttpMethod.Get, requestUri);
                 var response = await httpClient.SendAsync(request);
 
@@ -104,9 +104,7 @@ namespace MotionRaceBrowser.Network
 
                 if (response != null && response.StatusCode == HttpStatusCode.OK)
                 {
-                    var jsonArray = JToken.Parse(result);
-
-
+                    App.WebViewHTMLSource = result;
                     return true;
                 }
                 else

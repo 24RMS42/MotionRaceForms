@@ -10,6 +10,7 @@ namespace MotionRaceBrowser
         public static HttpHandler G_HTTP_CLIENT { get; set; }
         public static string Token { get; set; }
         public static string BaseUrl { get; set; }
+        public static string WebViewHTMLSource { get; set; }
 
         public App()
         {

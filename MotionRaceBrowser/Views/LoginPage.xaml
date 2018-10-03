@@ -38,6 +38,7 @@
                                 Style="{StaticResource CustomEntry}"
                                 Placeholder="Username"
                                 x:Name="email"
+                                Text="erix"
                                 Keyboard="Email"
                                 TextColor="Black"/>
                         </StackLayout>
@@ -49,6 +50,7 @@
                                 Style="{StaticResource CustomEntry}"
                                 TextColor="Black"
                                 Placeholder="Password"
+                                Text="123"
                                 IsPassword="true"
                                 x:Name="password"/>
                         </StackLayout>
