@@ -1,18 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Security.Cryptography;
+using System.Text;
+using MotionRaceBrowser.Constant;
 using Xamarin.Forms;
 
 namespace MotionRaceBrowser.Views
 {
     public partial class HomePage : ContentPage
     {
+        string requestUrl;
+
         public HomePage()
         {
             InitializeComponent();
             NavigationPage.SetHasNavigationBar(this, false);
-            var htmlSource = new HtmlWebViewSource();
-            htmlSource.Html = App.WebViewHTMLSource;
-            webView.Source = htmlSource;
+
+            var deviceLanguage = System.Globalization.CultureInfo.CurrentUICulture.IetfLanguageTag;
+            requestUrl = App.BaseUrl + "applogin.aspx?applicationid=" + Constants.ApplicaitonId.ToLower() + "&loginid=" + App.LoginId + "&ticket=" + App.HashedSecret + "&language=" + deviceLanguage;
+            webView.Source = requestUrl;
         }
 
         void OnBackButtonClicked(object sender, EventArgs e)
@@ -21,22 +27,21 @@ namespace MotionRaceBrowser.Views
             {
                 webView.GoBack();
             }
-            else
-            {
-                this.Navigation.PopAsync(); // closes the in-app browser view.
-            }
         }
 
         void OnHomeButtonClicked(object sender, EventArgs e)
         {
+            webView.Source = requestUrl;
         }
 
         void OnRefreshButtonClicked(object sender, EventArgs e)
         {
+            webView.Source = (webView.Source as UrlWebViewSource).Url;
         }
 
         void OnLogoutButtonClicked(object sender, EventArgs e)
         {
+            Navigation.PopAsync();
         }
     }
 }

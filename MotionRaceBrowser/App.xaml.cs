@@ -10,6 +10,8 @@ namespace MotionRaceBrowser
         public static HttpHandler G_HTTP_CLIENT { get; set; }
         public static string Token { get; set; }
         public static string BaseUrl { get; set; }
+        public static string LoginId { get; set; }
+        public static string HashedSecret { get; set; }
         public static string WebViewHTMLSource { get; set; }
 
         public App()
@@ -22,6 +24,8 @@ namespace MotionRaceBrowser
             if (properties.ContainsKey("baseUrl"))
             {
                 BaseUrl = properties["baseUrl"].ToString();
+                LoginId = properties["loginId"].ToString();
+                HashedSecret = properties["hashedSecret"].ToString();
                 MainPage = new NavigationPage(new HomePage());
             }
             else

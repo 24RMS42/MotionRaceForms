@@ -37,6 +37,8 @@ namespace MotionRaceBrowser.Network
                 var request = new HttpRequestMessage(HttpMethod.Get, requestUri);
                 var response = await httpClient.SendAsync(request);
 
+                UserDialogs.Instance.HideLoading();
+
                 var result = response.Content.ReadAsStringAsync().Result;
                 Console.WriteLine("secret result:" + result);
 
@@ -49,11 +51,22 @@ namespace MotionRaceBrowser.Network
                         var loginId = jsonArray["loginid"].ToString();
                         var loginSecret = jsonArray["loginsecret"].ToString();
                         var baseUrl = jsonArray["baseurl"].ToString();
-                        await AuthUserAsync(loginId, loginSecret, baseUrl);
+                        baseUrl = baseUrl + "/";
 
+                        HMACSHA1 hashAlgorithm = new HMACSHA1();
+                        hashAlgorithm.Key = Encoding.ASCII.GetBytes(Constants.ApplicaitonSecret.ToLower());
+                        byte[] bytes = Encoding.ASCII.GetBytes(loginSecret);
+                        byte[] hashedBytes = hashAlgorithm.ComputeHash(bytes);
+                        string hashedLoginSecret = Convert.ToBase64String(hashedBytes);
+
+                        App.LoginId = loginId;
+                        App.HashedSecret = hashedLoginSecret;
                         App.BaseUrl = baseUrl;
+
                         IDictionary<string, object> properties = Application.Current.Properties;
                         properties["baseUrl"] = baseUrl.Trim();
+                        properties["loginId"] = loginId.Trim();
+                        properties["hashedSecret"] = hashedLoginSecret.Trim();
                     }
                     else
                     {
@@ -83,6 +96,8 @@ namespace MotionRaceBrowser.Network
         {
             try
             {
+                var deviceLanguage = System.Globalization.CultureInfo.CurrentUICulture.IetfLanguageTag;
+
                 HMACSHA1 hashAlgorithm = new HMACSHA1();
                 hashAlgorithm.Key = Encoding.ASCII.GetBytes(Constants.ApplicaitonSecret.ToLower());
                 byte[] bytes = Encoding.ASCII.GetBytes(loginSecret);
@@ -93,7 +108,7 @@ namespace MotionRaceBrowser.Network
                 httpClient.DefaultRequestHeaders.Clear();
                 httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-                var requestUri = "/applogin.aspx?applicationid=" + Constants.ApplicaitonId.ToLower() + "&loginid=" + loginId + "&ticket=" + hashedLoginSecret;
+                var requestUri = "applogin.aspx?applicationid=" + Constants.ApplicaitonId.ToLower() + "&loginid=" + loginId + "&ticket=" + hashedLoginSecret + "&language=" + deviceLanguage;
                 var request = new HttpRequestMessage(HttpMethod.Get, requestUri);
                 var response = await httpClient.SendAsync(request);
 
