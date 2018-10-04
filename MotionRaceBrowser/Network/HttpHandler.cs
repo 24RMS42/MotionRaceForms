@@ -67,6 +67,8 @@ namespace MotionRaceBrowser.Network
                         properties["baseUrl"] = baseUrl.Trim();
                         properties["loginId"] = loginId.Trim();
                         properties["hashedSecret"] = hashedLoginSecret.Trim();
+                        properties["email"] = email;
+                        properties["password"] = password;
                     }
                     else
                     {
@@ -119,7 +121,6 @@ namespace MotionRaceBrowser.Network
 
                 if (response != null && response.StatusCode == HttpStatusCode.OK)
                 {
-                    App.WebViewHTMLSource = result;
                     return true;
                 }
                 else

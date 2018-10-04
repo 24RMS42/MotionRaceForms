@@ -16,9 +16,7 @@ namespace MotionRaceBrowser.Views
             InitializeComponent();
             NavigationPage.SetHasNavigationBar(this, false);
 
-            var deviceLanguage = System.Globalization.CultureInfo.CurrentUICulture.IetfLanguageTag;
-            requestUrl = App.BaseUrl + "applogin.aspx?applicationid=" + Constants.ApplicaitonId.ToLower() + "&loginid=" + App.LoginId + "&ticket=" + App.HashedSecret + "&language=" + deviceLanguage;
-            webView.Source = requestUrl;
+            RequestLogin();
         }
 
         void OnBackButtonClicked(object sender, EventArgs e)
@@ -42,6 +40,28 @@ namespace MotionRaceBrowser.Views
         void OnLogoutButtonClicked(object sender, EventArgs e)
         {
             Navigation.PopAsync();
+        }
+
+        async void OnLockButtonClicked(object sender, EventArgs e)
+        {
+            IDictionary<string, object> properties = Application.Current.Properties;
+            if (properties.ContainsKey("email"))
+            {
+                var email = properties["email"].ToString();
+                var password = properties["password"].ToString();
+                var result = await App.G_HTTP_CLIENT.LoginAsync(email, password);
+                if (result)
+                {
+                    RequestLogin();
+                }
+            }
+        }
+
+        void RequestLogin()
+        {
+            var deviceLanguage = System.Globalization.CultureInfo.CurrentUICulture.IetfLanguageTag;
+            requestUrl = App.BaseUrl + "applogin.aspx?applicationid=" + Constants.ApplicaitonId.ToLower() + "&loginid=" + App.LoginId + "&ticket=" + App.HashedSecret + "&language=" + deviceLanguage;
+            webView.Source = requestUrl;
         }
     }
 }

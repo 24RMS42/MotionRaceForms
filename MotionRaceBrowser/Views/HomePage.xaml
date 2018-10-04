@@ -7,6 +7,7 @@
                 <Button Image="home.png" WidthRequest="24" HorizontalOptions="Start" Clicked="OnHomeButtonClicked" />
                 <Button Image="return.png" WidthRequest="24" Margin="20,0" Clicked="OnBackButtonClicked" />
                 <Button Image="logout.png" WidthRequest="24" Margin="0" Clicked="OnLogoutButtonClicked" />
+                <Button Image="lock.png" WidthRequest="26" Margin="20,0" Clicked="OnLockButtonClicked" />
                 <Button Image="refresh.png" WidthRequest="24" HorizontalOptions="EndAndExpand" Clicked="OnRefreshButtonClicked" />
             </StackLayout>
         </StackLayout>

@@ -12,7 +12,6 @@ namespace MotionRaceBrowser
         public static string BaseUrl { get; set; }
         public static string LoginId { get; set; }
         public static string HashedSecret { get; set; }
-        public static string WebViewHTMLSource { get; set; }
 
         public App()
         {

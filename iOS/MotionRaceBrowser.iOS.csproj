@@ -165,6 +165,7 @@
     <BundleResource Include="Resources\refresh.png" />
     <BundleResource Include="Resources\return.png" />
     <BundleResource Include="Resources\logout.png" />
+    <BundleResource Include="Resources\lock.png" />
   </ItemGroup>
   <Import Project="..\MotionRaceBrowser\MotionRaceBrowser.projitems" Label="Shared" Condition="Exists('..\MotionRaceBrowser\MotionRaceBrowser.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
