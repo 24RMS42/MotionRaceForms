@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.Text;
+using System.Threading.Tasks;
 using MotionRaceBrowser.Constant;
 using Xamarin.Forms;
 
@@ -29,7 +30,7 @@ namespace MotionRaceBrowser.Views
 
         void OnHomeButtonClicked(object sender, EventArgs e)
         {
-            webView.Source = requestUrl;
+            webView.Source = App.BaseUrl;
         }
 
         void OnRefreshButtonClicked(object sender, EventArgs e)
@@ -37,9 +38,21 @@ namespace MotionRaceBrowser.Views
             webView.Source = (webView.Source as UrlWebViewSource).Url;
         }
 
-        void OnLogoutButtonClicked(object sender, EventArgs e)
+        async void OnLogoutButtonClicked(object sender, EventArgs e)
         {
-            Navigation.PopAsync();
+            webView.Source = App.BaseUrl + "logout.aspx";
+            Application.Current.Properties.Clear();
+            await Task.Delay(2000);
+
+            int stackCount = Navigation.NavigationStack.Count;
+            if (stackCount == 1)
+            {
+                await Navigation.PushAsync(new LoginPage());
+            }
+            else
+            {
+                await Navigation.PopAsync();
+            }
         }
 
         async void OnLockButtonClicked(object sender, EventArgs e)
