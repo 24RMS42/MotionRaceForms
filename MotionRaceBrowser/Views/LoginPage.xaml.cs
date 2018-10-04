@@ -11,6 +11,11 @@ namespace MotionRaceBrowser.Views
         {
             InitializeComponent();
             NavigationPage.SetHasNavigationBar(this, false);
+
+            var deviceLanguage = System.Globalization.CultureInfo.CurrentUICulture.IetfLanguageTag;
+            var isSwedish = deviceLanguage == "sv-SE";
+            email.Placeholder = isSwedish ? "Användarnamn" : "Username";
+            password.Placeholder = isSwedish ? "Lösenord" : "Password";
         }
 
         async void OnLoginButtonClicked(object sender, EventArgs args)
