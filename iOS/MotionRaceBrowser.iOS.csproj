@@ -163,7 +163,7 @@
     <BundleResource Include="Resources\signInLogo.png" />
     <BundleResource Include="Resources\home.png" />
     <BundleResource Include="Resources\refresh.png" />
-    <BundleResource Include="Resources\return.png" />
+    <BundleResource Include="Resources\back.png" />
     <BundleResource Include="Resources\logout.png" />
     <BundleResource Include="Resources\lock.png" />
   </ItemGroup>

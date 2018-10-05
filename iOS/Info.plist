@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>CFBundleDisplayName</key>
-	<string>MotionRaceBrowser</string>
+	<string>MotionsRace lite</string>
 	<key>CFBundleName</key>
-	<string>MotionRaceBrowser</string>
+	<string>MotionsRace lite</string>
 	<key>CFBundleIdentifier</key>
 	<string>com.companyraces.motionsracebrowser</string>
 	<key>CFBundleShortVersionString</key>
