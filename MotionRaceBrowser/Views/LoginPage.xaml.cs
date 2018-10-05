@@ -1,21 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using MotionRaceBrowser.Constant;
 using Xamarin.Forms;
 
 namespace MotionRaceBrowser.Views
 {
     public partial class LoginPage : ContentPage
     {
+        Strings stringInstance;
         public LoginPage()
         {
             InitializeComponent();
             NavigationPage.SetHasNavigationBar(this, false);
 
-            var deviceLanguage = System.Globalization.CultureInfo.CurrentUICulture.IetfLanguageTag;
-            var isSwedish = deviceLanguage == "sv-SE";
-            email.Placeholder = isSwedish ? "Användarnamn" : "Username";
-            password.Placeholder = isSwedish ? "Lösenord" : "Password";
+            stringInstance = new Strings();
+            email.Placeholder = stringInstance.UserName;
+            password.Placeholder = stringInstance.Password;
+            welcomeToLbl.Text = stringInstance.WelcomeToRace;
+            loginButton.Text = stringInstance.Login;
         }
 
         async void OnLoginButtonClicked(object sender, EventArgs args)
@@ -27,7 +30,7 @@ namespace MotionRaceBrowser.Views
         {
             if (string.IsNullOrEmpty(email.Text) || string.IsNullOrEmpty(password.Text))
             {
-                DisplayAlert("Warning!", "Email and password are required!", "OK");
+                DisplayAlert(stringInstance.Warning, stringInstance.EmailPasswordRequire, "OK");
                 return false;
             }
             else

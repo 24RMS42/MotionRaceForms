@@ -26,9 +26,10 @@ namespace MotionRaceBrowser.Network
         #region LoginAsync
         public async Task<bool> LoginAsync(string email, string password)
         {
+            var stringInstance = new Strings();
             try
             {
-                UserDialogs.Instance.ShowLoading("Logging in...");
+                UserDialogs.Instance.ShowLoading(stringInstance.LoggingIn);
                 httpClient.BaseAddress = new Uri(Constants.BASE);
                 httpClient.DefaultRequestHeaders.Clear();
                 httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
@@ -72,7 +73,7 @@ namespace MotionRaceBrowser.Network
                     }
                     else
                     {
-                        await HandleError("Invalid user name or password");
+                        await HandleError(stringInstance.InvalidUsernamePassword);
                         return false;
                     }
 
@@ -80,14 +81,14 @@ namespace MotionRaceBrowser.Network
                 }
                 else
                 {
-                    await HandleError("Login Failed");
+                    await HandleError(stringInstance.LoginFail);
                     return false;
                 }
             }
             catch (Exception ex)
             {
                 Debug.WriteLine(ex.ToString());
-                await HandleError("Login Failed");
+                await HandleError(stringInstance.LoginFail);
                 return false;
             }
         }

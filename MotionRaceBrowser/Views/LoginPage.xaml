@@ -28,7 +28,8 @@
                     <StackLayout Orientation="Vertical">
                         <Label
                             HorizontalOptions="Center"
-                            Text="Welcome to MotionRace" 
+                            x:Name="welcomeToLbl"
+                            Text="Welcome to MotionRace"
                             TextColor="{ StaticResource DarkBlueColor }"/>
                         
                         <!---EMAIL FIELD-->

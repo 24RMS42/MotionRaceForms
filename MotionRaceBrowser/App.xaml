@@ -49,7 +49,7 @@
                 <Setter Property="HeightRequest">
                     <Setter.Value>
                         <OnPlatform x:TypeArguments="x:Double"
-                            Android="40"
+                            Android="50"
                             iOS="40" />
                     </Setter.Value>
                 </Setter>
