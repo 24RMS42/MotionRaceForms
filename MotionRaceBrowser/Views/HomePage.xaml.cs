@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Security.Cryptography;
-using System.Text;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using MotionRaceBrowser.Constant;
 using Xamarin.Forms;
@@ -18,6 +17,21 @@ namespace MotionRaceBrowser.Views
             NavigationPage.SetHasNavigationBar(this, false);
 
             RequestLogin();
+
+            MessagingCenter.Subscribe<App>(this, "relogin", (sender) => {
+                Console.WriteLine("go to auto login");
+                OnLockButtonClicked(null, null);
+            });
+
+            webView.Navigating += (object sender, WebNavigatingEventArgs e) =>
+            {
+                var url = e.Url;
+                Debug.WriteLine("request url:", url);
+                if (url.Contains(Constants.LOGIN_PATTERN))
+                {
+                    OnLockButtonClicked(null, null);
+                }
+            };
         }
 
         void OnBackButtonClicked(object sender, EventArgs e)
@@ -40,8 +54,8 @@ namespace MotionRaceBrowser.Views
 
         async void OnLogoutButtonClicked(object sender, EventArgs e)
         {
-            webView.Source = App.BaseUrl + "logout.aspx";
             Application.Current.Properties.Clear();
+            webView.Source = App.BaseUrl + "logout.aspx";
             await Task.Delay(2000);
 
             int stackCount = Navigation.NavigationStack.Count;

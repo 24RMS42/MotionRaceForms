@@ -59,6 +59,7 @@ namespace MotionRaceBrowser.Network
                         byte[] bytes = Encoding.ASCII.GetBytes(loginSecret);
                         byte[] hashedBytes = hashAlgorithm.ComputeHash(bytes);
                         string hashedLoginSecret = Convert.ToBase64String(hashedBytes);
+                        hashedLoginSecret = System.Web.HttpUtility.UrlEncode(hashedLoginSecret);
 
                         App.LoginId = loginId;
                         App.HashedSecret = hashedLoginSecret;

@@ -121,6 +121,7 @@
     <Reference Include="Plugin.Multilingual">
       <HintPath>..\packages\Plugin.Multilingual.1.0.2\lib\Xamarin.iOS10\Plugin.Multilingual.dll</HintPath>
     </Reference>
+    <Reference Include="System.Web.Services" />
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json" />

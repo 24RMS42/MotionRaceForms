@@ -1,5 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
 using MotionRaceBrowser.Network;
+using MotionRaceBrowser.Util;
 using MotionRaceBrowser.Views;
 using Xamarin.Forms;
 
@@ -40,12 +43,26 @@ namespace MotionRaceBrowser
 
         protected override void OnSleep()
         {
-            // Handle when your app sleeps
+            Console.WriteLine("app go to sleep...");
+            var currentTimestamp = DateTime.Now.MillisecondsTimestamp();
+            IDictionary<string, object> properties = Current.Properties;
+            properties["timestamp"] = currentTimestamp;
         }
 
         protected override void OnResume()
         {
-            // Handle when your app resumes
+            Console.WriteLine("app resumed...");
+            long currentTimestamp = DateTime.Now.MillisecondsTimestamp();
+            IDictionary<string, object> properties = Current.Properties;
+            if (properties.ContainsKey("timestamp"))
+            {
+                long lastTimestamp = (long)properties["timestamp"];
+                long diff = (currentTimestamp - lastTimestamp) / 60;
+                if (diff >= 60) // more than 60 minutes
+                {
+                    MessagingCenter.Send<App>(this, "relogin");
+                }
+            }
         }
     }
 }
