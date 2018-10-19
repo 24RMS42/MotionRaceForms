@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="MotionRaceBrowser.Views.HomePage">
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="MotionRaceBrowser.Views.HomePage"
+    xmlns:local="clr-namespace:MotionRaceBrowser.Util">
 	<ContentPage.Content>
         <StackLayout>
             <Grid
@@ -18,31 +19,31 @@
                 
                 <Grid Grid.Row="1" BackgroundColor="White">
                     <StackLayout Orientation="Horizontal" Margin="20,0,20,0">
-                        <Image Source="home.png" WidthRequest="24" HorizontalOptions="Start">
+                        <local:ImageButton Source="home.png" WidthRequest="24" HorizontalOptions="Start">
                             <Image.GestureRecognizers>
                                 <TapGestureRecognizer Tapped="OnHomeButtonClicked" />
                             </Image.GestureRecognizers>
-                        </Image>
-                        <Image Source="back.png" WidthRequest="24" Margin="20,0">
+                        </local:ImageButton>
+                        <local:ImageButton Source="back.png" WidthRequest="24" Margin="20,0">
                             <Image.GestureRecognizers>
                                 <TapGestureRecognizer Tapped="OnBackButtonClicked" />
                             </Image.GestureRecognizers>
-                        </Image>
-                        <Image Source="logout.png" WidthRequest="24">
+                        </local:ImageButton>
+                        <local:ImageButton Source="logout.png" WidthRequest="24">
                             <Image.GestureRecognizers>
                                 <TapGestureRecognizer Tapped="OnLogoutButtonClicked" />
                             </Image.GestureRecognizers>
-                        </Image>
-                        <Image Source="lock.png" WidthRequest="26" Margin="20,0">
+                        </local:ImageButton>
+                        <local:ImageButton Source="lock.png" WidthRequest="26" Margin="20,0">
                             <Image.GestureRecognizers>
                                 <TapGestureRecognizer Tapped="OnLockButtonClicked" />
                             </Image.GestureRecognizers>
-                        </Image>
-                        <Image Source="refresh.png" WidthRequest="24" HorizontalOptions="EndAndExpand">
+                        </local:ImageButton>
+                        <local:ImageButton Source="refresh.png" WidthRequest="24" HorizontalOptions="EndAndExpand">
                             <Image.GestureRecognizers>
                                 <TapGestureRecognizer Tapped="OnRefreshButtonClicked" />
                             </Image.GestureRecognizers>
-                        </Image>
+                        </local:ImageButton>
                     </StackLayout>
                 </Grid>
             </Grid>

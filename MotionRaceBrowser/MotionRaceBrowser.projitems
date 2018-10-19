@@ -40,6 +40,7 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Constant\Strings.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Util\DateTimeExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Util\ImageButton.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Views\" />
