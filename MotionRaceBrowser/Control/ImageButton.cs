@@ -2,7 +2,7 @@
 using System.Windows.Input;
 using Xamarin.Forms;
 
-namespace MotionRaceBrowser.Util
+namespace MotionRaceBrowser
 {
     public class ImageButton : Image
     {

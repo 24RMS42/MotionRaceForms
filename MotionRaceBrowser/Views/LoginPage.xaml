@@ -39,16 +39,13 @@
                                 Style="{StaticResource CustomEntry}"
                                 Placeholder="Username"
                                 x:Name="email"
+                                ReturnType="Next"
                                 Keyboard="Email"
                                 TextColor="Black"/>
-                        </StackLayout>
-
-                        <!---PASSWORD FIELD-->
-                        <StackLayout
-                            VerticalOptions="CenterAndExpand">
                             <Entry
                                 Style="{StaticResource CustomEntry}"
                                 TextColor="Black"
+                                ReturnType="Done"
                                 Placeholder="Password"
                                 IsPassword="true"
                                 x:Name="password"/>
@@ -60,6 +57,12 @@
                             Margin="0,20"
                             Text="Login"
                             Clicked="OnLoginButtonClicked"
+                            Style="{StaticResource MainButtonStyle}"/>
+                        <Button
+                            x:Name="signupButton"
+                            Margin="0,20"
+                            Text="Login"
+                            Clicked="OnSignupButtonClicked"
                             Style="{StaticResource MainButtonStyle}"/>
                     </StackLayout>
                 </Grid>

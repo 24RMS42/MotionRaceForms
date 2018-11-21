@@ -163,6 +163,14 @@
     <AndroidResource Include="Resources\drawable\logout.png" />
     <AndroidResource Include="Resources\drawable\refresh.png" />
     <AndroidResource Include="Resources\drawable\back.png" />
+    <AndroidResource Include="Resources\drawable\browser.png" />
+    <AndroidResource Include="Resources\drawable\camera.png" />
+    <AndroidResource Include="Resources\drawable\left_arrow.png" />
+    <AndroidResource Include="Resources\drawable\loading.gif" />
+    <AndroidResource Include="Resources\drawable\menu.png" />
+    <AndroidResource Include="Resources\drawable\qrcode.png" />
+    <AndroidResource Include="Resources\drawable\scan_qr_target.png" />
+    <AndroidResource Include="Resources\drawable\search.png" />
   </ItemGroup>
   <Import Project="..\MotionRaceBrowser\MotionRaceBrowser.projitems" Label="Shared" Condition="Exists('..\MotionRaceBrowser\MotionRaceBrowser.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />

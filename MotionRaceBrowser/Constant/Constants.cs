@@ -6,6 +6,10 @@ namespace MotionRaceBrowser.Constant
         public static string BASE = "https://app.motionsrace.com/applogin.aspx";
         public static string LOGIN_PATTERN = "/login.aspx";
 
+        public static string SIGNUP = "https://app.motionsrace.com/signup/index.aspx";
+        public static string LOGOUT = "logout.aspx";
+        public static string SEARCH_CAR = "welcome.aspx?searchText=";
+
 #if __IOS__
         public static string ApplicaitonId = "237C451B-D1AC-41AF-A8FB-C8480C8A6B05";
         public static string ApplicaitonSecret = "CD026EAD-C735-46FA-840E-98040E74CAC5";

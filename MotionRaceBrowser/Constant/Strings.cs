@@ -16,6 +16,11 @@ namespace MotionRaceBrowser.Constant
             get => IsSwedish ? "LOGGA IN" : "LOGIN";
         }
 
+        public string NewParticipant
+        {
+            get => IsSwedish ? "Ny deltagare" : "New participant";
+        }
+
         public string UserName
         {
             get => IsSwedish ? "Användarnamn" : "Username";
@@ -46,6 +51,13 @@ namespace MotionRaceBrowser.Constant
             get => IsSwedish ? "Välkommen till MotionsRace" : "Welcome to MotionsRace";
         }
 
+        public string AppTokenOutdated
+        {
+            get => IsSwedish ?
+                "Denna app är av en gammal version och måste uppdateras. Var vänlig och uppdatera till den senaste versionen av denna app" :
+                "Your app version is outdated and needs to be updated. Please install the most recent update of this app";
+        }
+
         public string InvalidUsernamePassword
         {
             get => IsSwedish ? "Ogiltigt användarnamn eller lösenord" : "Invalid user name or password";
@@ -53,7 +65,52 @@ namespace MotionRaceBrowser.Constant
 
         public string LoginFail
         {
-            get => IsSwedish ? "Loginfel" : "Login Failed";
+            get => IsSwedish ? "Serverfel vid login" : "Server error upon login";
+        }
+
+        public string ScanQR
+        {
+            get => IsSwedish ? "Läs QR-kod" : "Scan QR";
+        }
+
+        public string GoBack
+        {
+            get => IsSwedish ? "Gå tillbaka" : "Go back";
+        }
+
+        public string Refresh
+        {
+            get => IsSwedish ? "Ladda om" : "Refresh";
+        }
+
+        public string Logout
+        {
+            get => IsSwedish ? "Logga ut" : "Logout";
+        }
+
+        public string SearchLicencePlate
+        {
+            get => IsSwedish ? "Sök Reg.nr" : "Search lic.plate";
+        }
+
+        public string OpenInSafari
+        {
+            get => IsSwedish ? "Öppna i Safari" : "Open in Safari";
+        }
+
+        public string OpenInBrowser
+        {
+            get => IsSwedish ? "Öppna i Browser" : "Open in Browser";
+        }
+
+        public string SearchParticipantOrActivity
+        {
+            get => IsSwedish ? "Sök deltagare eller aktivitet" : "Search participant or activity";
+        }
+
+        public string InvalidInternalCarsQRCode
+        {
+            get => IsSwedish ? "Ogiltig InternalCars QR-kod" : "Invalid InternalCars QRCode";
         }
     }
 }

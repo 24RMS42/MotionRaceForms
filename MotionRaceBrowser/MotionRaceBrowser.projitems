@@ -40,7 +40,10 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Constant\Strings.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Util\DateTimeExtensions.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Util\ImageButton.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Control\ImageButton.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Control\VerticalSlideEffect.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interface\IClearCookies.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Service\MessageServiceClass.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Views\" />

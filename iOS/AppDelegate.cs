@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-
 using Foundation;
+using Plugin.CrossPlatformTintedImage.iOS;
 using UIKit;
 
 namespace MotionRaceBrowser.iOS
@@ -13,6 +13,13 @@ namespace MotionRaceBrowser.iOS
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
             global::Xamarin.Forms.Forms.Init();
+
+            App.ScreenWidth = (int)UIScreen.MainScreen.Bounds.Width;
+            App.ScreenHeight = (int)UIScreen.MainScreen.Bounds.Height;
+
+            TintedImageRenderer.Init();
+            FFImageLoading.Forms.Platform.CachedImageRenderer.Init();
+            ZXing.Net.Mobile.Forms.iOS.Platform.Init();
 
             LoadApplication(new App());
 

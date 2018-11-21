@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using MotionRaceBrowser.Constant;
+using MotionRaceBrowser.Service;
 using Xamarin.Forms;
 
 namespace MotionRaceBrowser.Views
@@ -14,16 +15,36 @@ namespace MotionRaceBrowser.Views
             InitializeComponent();
             NavigationPage.SetHasNavigationBar(this, false);
 
+            //login event from Done button click
+            MessagingCenter.Subscribe<MessageServiceClass, string>(this, "login", (sender, arg) =>
+            {
+                Console.WriteLine("go to login");
+                OnLoginButtonClicked(null, null);
+            });
+
             stringInstance = new Strings();
             email.Placeholder = stringInstance.UserName;
             password.Placeholder = stringInstance.Password;
             welcomeToLbl.Text = stringInstance.WelcomeToRace;
             loginButton.Text = stringInstance.Login;
+            signupButton.Text = stringInstance.NewParticipant;
+
+#if DEBUG
+            email.Text = "erix";
+            password.Text = "123";
+#endif
+            email.ReturnCommand = new Command(() => password.Focus());
+            password.ReturnCommand = new Command(() => OnLoginButtonClicked(null, null));
         }
 
         async void OnLoginButtonClicked(object sender, EventArgs args)
         {
             await LoginAsync(email.Text, password.Text);
+        }
+
+        void OnSignupButtonClicked(object sender, EventArgs args)
+        {
+            Device.OpenUri(new Uri(Constants.SIGNUP));
         }
 
         private bool CheckValidate()

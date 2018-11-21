@@ -1,52 +1,212 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="MotionRaceBrowser.Views.HomePage"
-    xmlns:local="clr-namespace:MotionRaceBrowser.Util">
+    xmlns:local="clr-namespace:MotionRaceBrowser"
+    xmlns:controls="clr-namespace:Plugin.CrossPlatformTintedImage.Abstractions;assembly=Plugin.CrossPlatformTintedImage.Abstractions"
+    xmlns:zxing="clr-namespace:ZXing.Net.Mobile.Forms;assembly=ZXing.Net.Mobile.Forms"
+    xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms">
 	<ContentPage.Content>
-        <StackLayout>
-            <Grid
-                RowSpacing="0"
-                HorizontalOptions="Fill"
-                VerticalOptions="FillAndExpand" >
+        <RelativeLayout>
+            <!-- WebView and Bottom Bar -->
+            <StackLayout
+                RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1}"
+                RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1}">
+                <Grid
+                    RowSpacing="0"
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="FillAndExpand">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="65" />
+                    </Grid.RowDefinitions>
 
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="90*" />
-                    <RowDefinition Height="10*" />
-                </Grid.RowDefinitions>
+                    <!--WebView/Menu/SearchCar/BarcodeScan-->
+                    <RelativeLayout Grid.Row="0" Margin="0, 22, 0, 0">
+                        <WebView
+                            RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1}"
+                            RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1}"
+                            x:Name="webView"
+                            WidthRequest="2000"
+                            HeightRequest="2000"
+                            Navigating="OnWebviewNavigating"
+                            Navigated="OnWebviewEndNavigating"
+                            BackgroundColor="White">
+                        </WebView>
+                        <StackLayout
+                            x:Name="barcodeScanView"
+                            RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width}"
+                            RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height}"
+                            RelativeLayout.XConstraint="{ConstraintExpression Type=Constant}"
+                            RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height}" >
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnGGTapped" />
+                            </StackLayout.GestureRecognizers>
+                            <StackLayout.Effects>
+                                <local:VerticalSlideEffect />
+                            </StackLayout.Effects>
+                            <StackLayout
+                                BackgroundColor="White"
+                                HorizontalOptions="FillAndExpand"
+                                VerticalOptions="FillAndExpand">
+                                <RelativeLayout x:Name="zxingRelativeLayout">
+                                    <zxing:ZXingScannerView
+                                        x:Name="zxingView"
+                                        OnScanResult="OnScanResult"
+                                        IsScanning="false"
+                                        WidthRequest="200"
+                                        HeightRequest="300" />
+                                    <Image
+                                        x:Name="targetImageView"
+                                        RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.16}"
+                                        RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.30}"
+                                        Source="scan_qr_target.png"
+                                        WidthRequest="250"
+                                        HeightRequest="250" />
+                                </RelativeLayout>
+                            </StackLayout>
+                        </StackLayout>
+                        <StackLayout
+                            x:Name="searchBoxView"
+                            RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width}"
+                            RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height}"
+                            RelativeLayout.XConstraint="{ConstraintExpression Type=Constant}"
+                            RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height}" >
+                            <StackLayout.Effects>
+                                <local:VerticalSlideEffect />
+                            </StackLayout.Effects>
+                            <StackLayout
+                                BackgroundColor="White"
+                                Orientation="Horizontal"
+                                VerticalOptions="Start">
+                                <local:ImageButton Source="left_arrow.png" WidthRequest="24" Margin="10, 0">
+                                    <Image.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="OnBackArrowClicked" />
+                                    </Image.GestureRecognizers>
+                                </local:ImageButton>
+                                <Entry
+                                    Style="{StaticResource CustomEntry}"
+                                    x:Name="searchQuery"
+                                    HorizontalOptions="FillAndExpand"
+                                    ReturnType="Search"
+                                    Keyboard="Chat" />
+                            </StackLayout>
+                            <BoxView
+                                BackgroundColor="Black"
+                                Margin="0, -5"
+                                VerticalOptions="FillAndExpand"
+                                Opacity="0.7" />
+                        </StackLayout>
+                        <StackLayout
+                            x:Name="menuView"
+                            RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width}"
+                            RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height}"
+                            RelativeLayout.XConstraint="{ConstraintExpression Type=Constant}"
+                            RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height}" >
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnGGTapped" />
+                            </StackLayout.GestureRecognizers>
+                            <StackLayout.Effects>
+                                <local:VerticalSlideEffect />
+                            </StackLayout.Effects>
+                            <Grid
+                                RowSpacing="0"
+                                HorizontalOptions="FillAndExpand"
+                                VerticalOptions="FillAndExpand">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="40*" />
+                                    <ColumnDefinition Width="60*" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition>
+                                        <RowDefinition.Height>
+                                            <OnPlatform x:TypeArguments="GridLength"
+                                                iOS="300"
+                                                Android="330" />
+                                        </RowDefinition.Height>
+                                    </RowDefinition>
+                                </Grid.RowDefinitions>
 
-                <Grid Grid.Row="0">
-                    <WebView x:Name="webView" WidthRequest="2000" HeightRequest="2000" BackgroundColor="Green"/>
+                                <StackLayout Grid.Row="1" Grid.Column="1" BackgroundColor="{StaticResource LightGreyColor}">
+                                    <StackLayout Orientation="Horizontal">
+                                        <controls:TintedImage TintColor="{StaticResource SecondaryColor}" Source="search.png" WidthRequest="24" Margin="15,0" />
+                                        <Button Style="{StaticResource MenuButtonStyle}" x:Name="searchBtn" Clicked="OnSearchBtnClicked" />
+                                    </StackLayout>
+                                    <StackLayout Orientation="Horizontal">
+                                        <controls:TintedImage TintColor="{StaticResource SecondaryColor}" Source="qrcode.png" WidthRequest="30" Margin="15,0" />
+                                        <Button Style="{StaticResource MenuButtonStyle}" x:Name="scanQRBtn" IsEnabled="true" Clicked="OnBarcodeBtnClicked" />
+                                    </StackLayout>
+                                    <StackLayout Orientation="Horizontal">
+                                        <controls:TintedImage TintColor="{StaticResource SecondaryColor}" Source="back.png" WidthRequest="24" Margin="15,0" />
+                                        <Button Style="{StaticResource MenuButtonStyle}" x:Name="goBackBtn" Clicked="OnBackButtonClicked" />
+                                    </StackLayout>
+                                    <StackLayout Orientation="Horizontal">
+                                        <controls:TintedImage TintColor="{StaticResource SecondaryColor}" Source="refresh.png" WidthRequest="24" Margin="15,0" />
+                                        <Button Style="{StaticResource MenuButtonStyle}" x:Name="refreshBtn" Clicked="OnRefreshButtonClicked" />
+                                    </StackLayout>
+                                    <StackLayout Orientation="Horizontal">
+                                        <controls:TintedImage TintColor="{StaticResource SecondaryColor}" Source="browser.png" WidthRequest="24" Margin="15,0" />
+                                        <Button Style="{StaticResource MenuButtonStyle}" x:Name="openBrowserBtn" Clicked="OnOpenBrowserButtonClicked" />
+                                    </StackLayout>
+                                    <StackLayout Orientation="Horizontal">
+                                        <controls:TintedImage TintColor="{StaticResource SecondaryColor}" Source="logout.png" WidthRequest="24" Margin="15,0" />
+                                        <Button Style="{StaticResource MenuButtonStyle}" x:Name="logoutBtn" Clicked="OnLogoutButtonClicked" />
+                                    </StackLayout>
+                                    <StackLayout Orientation="Horizontal">
+                                        <Button Style="{StaticResource MenuButtonStyle}" x:Name="tempBtn" />
+                                    </StackLayout>
+                                </StackLayout>
+                            </Grid>
+                        </StackLayout>
+                    </RelativeLayout>
+
+                    <!--Bottom Bar-->
+                    <Grid Grid.Row="1" BackgroundColor="{StaticResource LightGreyColor}">
+                        <StackLayout Orientation="Horizontal" Margin="20,0,20,0">
+                            <local:ImageButton Source="home.png" WidthRequest="24" HorizontalOptions="Start">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnHomeButtonClicked" />
+                                </Image.GestureRecognizers>
+                            </local:ImageButton>
+                            <local:ImageButton Source="lock.png" WidthRequest="26" Margin="20,0">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnLockButtonClicked" />
+                                </Image.GestureRecognizers>
+                            </local:ImageButton>
+                            <local:ImageButton Source="qrcode.png" WidthRequest="30">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnBarcodeBtnClicked" />
+                                </Image.GestureRecognizers>
+                            </local:ImageButton>
+                            <local:ImageButton Source="search.png" WidthRequest="24" Margin="20,0">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnSearchBtnClicked" />
+                                </Image.GestureRecognizers>
+                            </local:ImageButton>
+                            <local:ImageButton Source="menu.png" WidthRequest="24" HorizontalOptions="EndAndExpand">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnMenuButtonClicked" />
+                                </Image.GestureRecognizers>
+                            </local:ImageButton>
+                        </StackLayout>
+                    </Grid>
                 </Grid>
-                
-                <Grid Grid.Row="1" BackgroundColor="White">
-                    <StackLayout Orientation="Horizontal" Margin="20,0,20,0">
-                        <local:ImageButton Source="home.png" WidthRequest="24" HorizontalOptions="Start">
-                            <Image.GestureRecognizers>
-                                <TapGestureRecognizer Tapped="OnHomeButtonClicked" />
-                            </Image.GestureRecognizers>
-                        </local:ImageButton>
-                        <local:ImageButton Source="back.png" WidthRequest="24" Margin="20,0">
-                            <Image.GestureRecognizers>
-                                <TapGestureRecognizer Tapped="OnBackButtonClicked" />
-                            </Image.GestureRecognizers>
-                        </local:ImageButton>
-                        <local:ImageButton Source="logout.png" WidthRequest="24">
-                            <Image.GestureRecognizers>
-                                <TapGestureRecognizer Tapped="OnLogoutButtonClicked" />
-                            </Image.GestureRecognizers>
-                        </local:ImageButton>
-                        <local:ImageButton Source="lock.png" WidthRequest="26" Margin="20,0">
-                            <Image.GestureRecognizers>
-                                <TapGestureRecognizer Tapped="OnLockButtonClicked" />
-                            </Image.GestureRecognizers>
-                        </local:ImageButton>
-                        <local:ImageButton Source="refresh.png" WidthRequest="24" HorizontalOptions="EndAndExpand">
-                            <Image.GestureRecognizers>
-                                <TapGestureRecognizer Tapped="OnRefreshButtonClicked" />
-                            </Image.GestureRecognizers>
-                        </local:ImageButton>
-                    </StackLayout>
-                </Grid>
-            </Grid>
-        </StackLayout>
-	</ContentPage.Content>
+            </StackLayout>
+            
+            <!--Loading View-->
+            <RelativeLayout
+                x:Name="loadingView"
+                IsVisible="false"
+                BackgroundColor="#3D3D3D33"
+                RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width}"
+                RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height}" >
+                <ffimageloading:CachedImage
+                    RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.40}"
+                    RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.45}"
+                    HeightRequest="80"
+                    WidthRequest="80"
+                    Source="loading.gif">
+                </ffimageloading:CachedImage>
+            </RelativeLayout>
+        </RelativeLayout>
+    </ContentPage.Content>
 </ContentPage>

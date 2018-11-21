@@ -3,18 +3,37 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using MotionRaceBrowser.Constant;
+using MotionRaceBrowser.Interface;
+using MotionRaceBrowser.Service;
 using Xamarin.Forms;
+using ZXing;
 
 namespace MotionRaceBrowser.Views
 {
     public partial class HomePage : ContentPage
     {
         string requestUrl;
+        Strings stringInstance;
+        private bool _isRunning;
 
         public HomePage()
         {
             InitializeComponent();
             NavigationPage.SetHasNavigationBar(this, false);
+
+            stringInstance = new Strings();
+            scanQRBtn.Text = stringInstance.ScanQR;
+            goBackBtn.Text = stringInstance.GoBack;
+            refreshBtn.Text = stringInstance.Refresh;
+            logoutBtn.Text = stringInstance.Logout;
+            searchBtn.Text = stringInstance.SearchLicencePlate;
+            searchQuery.Placeholder = stringInstance.SearchParticipantOrActivity;
+
+#if __IOS__
+            openBrowserBtn.Text = stringInstance.OpenInSafari;
+#else
+            openBrowserBtn.Text = stringInstance.OpenInBrowser;
+#endif
 
             RequestLogin();
 
@@ -22,20 +41,76 @@ namespace MotionRaceBrowser.Views
                 Console.WriteLine("go to auto login");
                 OnLockButtonClicked(null, null);
             });
-
-            webView.Navigating += (object sender, WebNavigatingEventArgs e) =>
+            MessagingCenter.Subscribe<MessageServiceClass, string>(this, "searchDone", (sender, arg) =>
             {
-                var url = e.Url;
-                Debug.WriteLine("request url:", url);
-                if (url.Contains(Constants.LOGIN_PATTERN))
+                SearchPerform();
+            });
+
+            searchQuery.ReturnCommand = new Command(() => SearchPerform());
+
+            int targetAreaWidth = Device.Idiom == TargetIdiom.Tablet ? 500 : 250;
+            zxingView.WidthRequest = App.ScreenWidth;
+            zxingView.HeightRequest = App.ScreenHeight - 60;
+            float widthOffset = (App.ScreenWidth - targetAreaWidth) / 2 / App.ScreenWidth;
+            float heightOffset = (App.ScreenHeight - targetAreaWidth) / 2 / App.ScreenHeight;
+            zxingRelativeLayout.Children.Add(targetImageView, Constraint.RelativeToParent((parent) =>
+            {
+                return parent.Width * .16;
+            }), Constraint.RelativeToParent((parent) =>
+            {
+                return parent.Height * .30;
+            }), Constraint.RelativeToParent((parent) =>
+            {
+                return targetAreaWidth;
+            }), Constraint.RelativeToParent((parent) =>
+            {
+                return targetAreaWidth;
+            }));
+        }
+
+        protected override void OnSizeAllocated(double width, double height)
+        {
+            base.OnSizeAllocated(width, height);
+            HideMenu();
+        }
+
+        void OnWebviewNavigating(object sender, WebNavigatingEventArgs e)
+        {
+            _isRunning = true;
+            Device.StartTimer(new TimeSpan(0, 0, 8), () =>
+            { //need to hide loading after 8 seconds
+                Console.WriteLine("test:" + _isRunning);
+                if (_isRunning)
                 {
-                    OnLockButtonClicked(null, null);
+                    _isRunning = false;
+                    loadingView.IsVisible = false;
                 }
-            };
+                return _isRunning;
+            });
+
+            loadingView.IsVisible = true;
+            var url = e.Url;
+            Debug.WriteLine("request url:", url);
+            if (url.Contains(Constants.LOGIN_PATTERN))
+            {
+                OnLockButtonClicked(null, null);
+            }
+
+            if (url.EndsWith(".pdf", StringComparison.Ordinal))
+            {
+                Device.OpenUri(new Uri(url));
+            }
+        }
+
+        void OnWebviewEndNavigating(object sender, WebNavigatedEventArgs e)
+        {
+            _isRunning = false;
+            loadingView.IsVisible = false;
         }
 
         void OnBackButtonClicked(object sender, EventArgs e)
         {
+            OnGGTapped(null, null);
             if (webView.CanGoBack)
             {
                 webView.GoBack();
@@ -44,18 +119,60 @@ namespace MotionRaceBrowser.Views
 
         void OnHomeButtonClicked(object sender, EventArgs e)
         {
+            OnGGTapped(null, null);
             webView.Source = App.BaseUrl;
         }
 
         void OnRefreshButtonClicked(object sender, EventArgs e)
         {
+            OnGGTapped(null, null);
             webView.Source = (webView.Source as UrlWebViewSource).Url;
+        }
+
+        void OnOpenBrowserButtonClicked(object sender, EventArgs e)
+        {
+            OnGGTapped(null, null);
+
+            var currentPageUrl = (webView.Source as UrlWebViewSource).Url;
+            Uri uri = new Uri(currentPageUrl);
+            var baseUrl = uri.Scheme + Uri.SchemeDelimiter + uri.Host;
+            var requestedUrl = currentPageUrl.Substring(baseUrl.Length, currentPageUrl.Length - baseUrl.Length);
+            requestedUrl = System.Web.HttpUtility.UrlEncode(requestedUrl);
+
+            var deviceLanguage = System.Globalization.CultureInfo.CurrentUICulture.IetfLanguageTag;
+            requestUrl = App.BaseUrl + "applogin.aspx?applicationid=" + Constants.ApplicaitonId.ToLower() + "&loginid=" + App.LoginId + "&ticket=" + App.HashedSecret + "&language=" + deviceLanguage + "&wantedURL=" + requestedUrl;
+            Device.OpenUri(new Uri(requestUrl));
+        }
+
+        void OnMenuButtonClicked(object sender, EventArgs e)
+        {
+            VerticalSlideEffect.SetIsShown(menuView, !VerticalSlideEffect.GetIsShown(menuView));
+        }
+
+        void OnBarcodeBtnClicked(object sender, EventArgs e)
+        {
+            HideMenu();
+            VerticalSlideEffect.SetIsShown(searchBoxView, false);
+            ToggleBarcodeScanView();
+        }
+
+        void OnSearchBtnClicked(object sender, EventArgs e)
+        {
+            HideMenu();
+            ToggleSearchBox();
+
+            if (VerticalSlideEffect.GetIsShown(barcodeScanView))
+            {
+                ToggleBarcodeScanView();
+            }
         }
 
         async void OnLogoutButtonClicked(object sender, EventArgs e)
         {
+            OnGGTapped(null, null);
             Application.Current.Properties.Clear();
-            webView.Source = App.BaseUrl + "logout.aspx";
+            DependencyService.Get<IClearCookies>().Clear();
+            webView.Source = App.BaseUrl + Constants.LOGOUT;
             await Task.Delay(2000);
 
             int stackCount = Navigation.NavigationStack.Count;
@@ -71,6 +188,7 @@ namespace MotionRaceBrowser.Views
 
         async void OnLockButtonClicked(object sender, EventArgs e)
         {
+            OnGGTapped(null, null);
             IDictionary<string, object> properties = Application.Current.Properties;
             if (properties.ContainsKey("email"))
             {
@@ -84,11 +202,108 @@ namespace MotionRaceBrowser.Views
             }
         }
 
+        void OnBackArrowClicked(object sender, EventArgs e)
+        {
+            ToggleSearchBox();
+        }
+
         void RequestLogin()
         {
             var deviceLanguage = System.Globalization.CultureInfo.CurrentUICulture.IetfLanguageTag;
             requestUrl = App.BaseUrl + "applogin.aspx?applicationid=" + Constants.ApplicaitonId.ToLower() + "&loginid=" + App.LoginId + "&ticket=" + App.HashedSecret + "&language=" + deviceLanguage;
             webView.Source = requestUrl;
+        }
+
+        /*
+         * Hide any view
+         */
+        void OnGGTapped(object sender, EventArgs e)
+        {
+            if (VerticalSlideEffect.GetIsShown(menuView))
+            {
+                HideMenu();
+            }
+
+            if (VerticalSlideEffect.GetIsShown(searchBoxView))
+            {
+                ToggleSearchBox();
+            }
+
+            if (VerticalSlideEffect.GetIsShown(barcodeScanView))
+            {
+                ToggleBarcodeScanView();
+            }
+        }
+
+        void HideMenu()
+        {
+            VerticalSlideEffect.SetIsShown(menuView, false);
+        }
+
+        void ToggleSearchBox()
+        {
+            VerticalSlideEffect.SetIsShown(searchBoxView, !VerticalSlideEffect.GetIsShown(searchBoxView));
+            if (VerticalSlideEffect.GetIsShown(searchBoxView))
+            {
+                searchQuery.Focus();
+                searchQuery.Text = string.Empty;
+            }
+        }
+
+        void ToggleBarcodeScanView()
+        {
+            VerticalSlideEffect.SetIsShown(barcodeScanView, !VerticalSlideEffect.GetIsShown(barcodeScanView));
+            if (VerticalSlideEffect.GetIsShown(barcodeScanView))
+            {
+                zxingView.IsScanning = true;
+            }
+            else
+            {
+#if __IOS__
+                zxingView.IsScanning = false;
+#endif
+            }
+        }
+
+        void OnScanResult(Result result)
+        {
+            Device.BeginInvokeOnMainThread(async () =>
+            {
+                Debug.WriteLine("qr result", result.Text);
+                if (result.Text.Contains("icrdr.se") || result.Text.Contains("icrdr.ictst.se"))
+                {
+                    OnGGTapped(null, null);
+                    webView.Source = result.Text;
+                }
+                else
+                {
+                    zxingView.IsScanning = false;
+                    await ShowMessage(stringInstance.InvalidInternalCarsQRCode, result.Text, "Cancel", () =>
+                    {
+                        zxingView.IsScanning = true;
+                    });
+                }
+            });
+        }
+
+        void SearchPerform()
+        {
+            OnGGTapped(null, null);
+            if (!String.IsNullOrEmpty(searchQuery.Text))
+            {
+                webView.Source = App.BaseUrl + Constants.SEARCH_CAR + searchQuery.Text;
+                searchQuery.Text = string.Empty;
+            }
+        }
+
+        public async Task ShowMessage(string title,
+                                      string message,
+                                      string buttonText,
+                                      Action afterHideCallback)
+        {
+            await DisplayAlert(title, message, buttonText);
+
+            afterHideCallback?.Invoke();
         }
     }
 }
