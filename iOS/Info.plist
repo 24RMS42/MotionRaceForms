@@ -43,11 +43,11 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
-	<key>CFBundleVersion</key>
-	<string>18</string>
 	<key>NSCameraUsageDescription</key>
-	<string>MotionsRace lite will use your camera to scan QR codes for fast access to inspections and wheels, and to snap photos of cars</string>
+	<string>MotionsRace will use your camera to read QR codes so you can connect faster to challenge participants</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>MotionsRace lite will use your camera to get QR codes for fast access to inspections and wheels, and to get photos of cars</string>
+	<string>MotionsRace will use your photo to get QR codes so you can connect faster to challenge participants</string>
+	<key>CFBundleVersion</key>
+	<string>21</string>
 </dict>
 </plist>

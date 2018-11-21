@@ -88,9 +88,9 @@ namespace MotionRaceBrowser.Constant
             get => IsSwedish ? "Logga ut" : "Logout";
         }
 
-        public string SearchLicencePlate
+        public string Search
         {
-            get => IsSwedish ? "Sök Reg.nr" : "Search lic.plate";
+            get => IsSwedish ? "Sök" : "Search";
         }
 
         public string OpenInSafari

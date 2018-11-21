@@ -4,6 +4,10 @@ using System.Threading.Tasks;
 using MotionRaceBrowser.Constant;
 using MotionRaceBrowser.Service;
 using Xamarin.Forms;
+#if __ANDROID__
+using Plugin.Permissions;
+using Plugin.Permissions.Abstractions;
+#endif
 
 namespace MotionRaceBrowser.Views
 {
@@ -35,6 +39,10 @@ namespace MotionRaceBrowser.Views
 #endif
             email.ReturnCommand = new Command(() => password.Focus());
             password.ReturnCommand = new Command(() => OnLoginButtonClicked(null, null));
+
+#if __ANDROID__
+            AskPermission();
+#endif
         }
 
         async void OnLoginButtonClicked(object sender, EventArgs args)
@@ -70,5 +78,38 @@ namespace MotionRaceBrowser.Views
                 }
             }
         }
+
+#if __ANDROID__
+        async void AskPermission()
+        {
+            try
+            {
+                var status = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Camera);
+                if (status != PermissionStatus.Granted)
+                {
+                    if (await CrossPermissions.Current.ShouldShowRequestPermissionRationaleAsync(Permission.Camera))
+                    {
+                        await DisplayAlert("Need Camera permission", "", "OK");
+                    }
+
+                    var results = await CrossPermissions.Current.RequestPermissionsAsync(Permission.Camera);
+                    if (results.ContainsKey(Permission.Camera))
+                        status = results[Permission.Camera];
+                }
+
+                if (status == PermissionStatus.Granted)
+                {
+
+                }
+                else if (status != PermissionStatus.Unknown)
+                {
+                    await DisplayAlert("Camera Denied", "", "OK");
+                }
+            }
+            catch (Exception ex)
+            {
+            }
+        }
+#endif
     }
 }

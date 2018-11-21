@@ -4,7 +4,7 @@
         <ResourceDictionary>
 
             <Color x:Key="PrimaryColor">#F25A0F</Color>
-            <Color x:Key="SecondaryColor">#3b5741</Color>
+            <Color x:Key="SecondaryColor">#0000FF</Color>
             <Color x:Key="LightGreyColor">#C0C0C0</Color>
             <Color x:Key="LightBlueColor">#3277b4</Color>
             <Color x:Key="DarkBlueColor">#163e55</Color>

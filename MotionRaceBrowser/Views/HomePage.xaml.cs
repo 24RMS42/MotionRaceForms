@@ -26,7 +26,7 @@ namespace MotionRaceBrowser.Views
             goBackBtn.Text = stringInstance.GoBack;
             refreshBtn.Text = stringInstance.Refresh;
             logoutBtn.Text = stringInstance.Logout;
-            searchBtn.Text = stringInstance.SearchLicencePlate;
+            searchBtn.Text = stringInstance.Search;
             searchQuery.Placeholder = stringInstance.SearchParticipantOrActivity;
 
 #if __IOS__
@@ -37,7 +37,8 @@ namespace MotionRaceBrowser.Views
 
             RequestLogin();
 
-            MessagingCenter.Subscribe<App>(this, "relogin", (sender) => {
+            MessagingCenter.Subscribe<App>(this, "relogin", (sender) =>
+            {
                 Console.WriteLine("go to auto login");
                 OnLockButtonClicked(null, null);
             });
@@ -51,14 +52,21 @@ namespace MotionRaceBrowser.Views
             int targetAreaWidth = Device.Idiom == TargetIdiom.Tablet ? 500 : 250;
             zxingView.WidthRequest = App.ScreenWidth;
             zxingView.HeightRequest = App.ScreenHeight - 60;
-            float widthOffset = (App.ScreenWidth - targetAreaWidth) / 2 / App.ScreenWidth;
-            float heightOffset = (App.ScreenHeight - targetAreaWidth) / 2 / App.ScreenHeight;
+
+#if __ANDROID__
+            double widthOffset = 0.135;
+            double heightOffset = 0.09;
+#else
+            double widthOffset = 0.16;
+            double heightOffset = 0.30;
+#endif
+
             zxingRelativeLayout.Children.Add(targetImageView, Constraint.RelativeToParent((parent) =>
             {
-                return parent.Width * .16;
+                return parent.Width * widthOffset;
             }), Constraint.RelativeToParent((parent) =>
             {
-                return parent.Height * .30;
+                return parent.Height * heightOffset;
             }), Constraint.RelativeToParent((parent) =>
             {
                 return targetAreaWidth;
@@ -267,22 +275,11 @@ namespace MotionRaceBrowser.Views
 
         void OnScanResult(Result result)
         {
-            Device.BeginInvokeOnMainThread(async () =>
+            Device.BeginInvokeOnMainThread(() =>
             {
                 Debug.WriteLine("qr result", result.Text);
-                if (result.Text.Contains("icrdr.se") || result.Text.Contains("icrdr.ictst.se"))
-                {
-                    OnGGTapped(null, null);
-                    webView.Source = result.Text;
-                }
-                else
-                {
-                    zxingView.IsScanning = false;
-                    await ShowMessage(stringInstance.InvalidInternalCarsQRCode, result.Text, "Cancel", () =>
-                    {
-                        zxingView.IsScanning = true;
-                    });
-                }
+                OnGGTapped(null, null);
+                webView.Source = result.Text;
             });
         }
 
