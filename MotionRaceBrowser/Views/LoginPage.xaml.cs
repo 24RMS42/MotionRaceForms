@@ -39,7 +39,11 @@ namespace MotionRaceBrowser.Views
 #endif
             email.ReturnCommand = new Command(() => password.Focus());
             password.ReturnCommand = new Command(() => OnLoginButtonClicked(null, null));
+        }
 
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
 #if __ANDROID__
             AskPermission();
 #endif
