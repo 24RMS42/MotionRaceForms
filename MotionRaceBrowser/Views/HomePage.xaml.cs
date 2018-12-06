@@ -23,8 +23,9 @@ namespace MotionRaceBrowser.Views
 
             stringInstance = new Strings();
             scanQRBtn.Text = stringInstance.ScanQR;
+            myQRBtn.Text = stringInstance.MyQR;
+            homeBtn.Text = stringInstance.Start;
             goBackBtn.Text = stringInstance.GoBack;
-            refreshBtn.Text = stringInstance.Refresh;
             logoutBtn.Text = stringInstance.Logout;
             searchBtn.Text = stringInstance.Search;
             searchQuery.Placeholder = stringInstance.SearchParticipantOrActivity;
@@ -162,6 +163,12 @@ namespace MotionRaceBrowser.Views
             HideMenu();
             VerticalSlideEffect.SetIsShown(searchBoxView, false);
             ToggleBarcodeScanView();
+        }
+
+        void OnMyQRClicked(object sender, EventArgs e)
+        {
+            OnGGTapped(null, null);
+            webView.Source = App.BaseUrl + Constants.MY_QR;
         }
 
         void OnSearchBtnClicked(object sender, EventArgs e)

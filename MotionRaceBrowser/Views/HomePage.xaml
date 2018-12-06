@@ -120,29 +120,37 @@
                                     <RowDefinition>
                                         <RowDefinition.Height>
                                             <OnPlatform x:TypeArguments="GridLength"
-                                                iOS="300"
-                                                Android="330" />
+                                                iOS="350"
+                                                Android="380" />
                                         </RowDefinition.Height>
                                     </RowDefinition>
                                 </Grid.RowDefinitions>
 
                                 <StackLayout Grid.Row="1" Grid.Column="1" BackgroundColor="{StaticResource LightGreyColor}">
                                     <StackLayout Orientation="Horizontal">
-                                        <controls:TintedImage TintColor="{StaticResource SecondaryColor}" Source="search.png" WidthRequest="24" Margin="15,0" />
-                                        <Button Style="{StaticResource MenuButtonStyle}" x:Name="searchBtn" Clicked="OnSearchBtnClicked" />
-                                    </StackLayout>
-                                    <StackLayout Orientation="Horizontal">
-                                        <controls:TintedImage TintColor="{StaticResource SecondaryColor}" Source="qrcode.png" WidthRequest="30" Margin="15,0" />
-                                        <Button Style="{StaticResource MenuButtonStyle}" x:Name="scanQRBtn" IsEnabled="true" Clicked="OnBarcodeBtnClicked" />
-                                    </StackLayout>
-                                    <StackLayout Orientation="Horizontal">
                                         <controls:TintedImage TintColor="{StaticResource SecondaryColor}" Source="back.png" WidthRequest="24" Margin="15,0" />
                                         <Button Style="{StaticResource MenuButtonStyle}" x:Name="goBackBtn" Clicked="OnBackButtonClicked" />
                                     </StackLayout>
                                     <StackLayout Orientation="Horizontal">
+                                        <controls:TintedImage TintColor="{StaticResource SecondaryColor}" Source="home.png" WidthRequest="24" Margin="15,0" />
+                                        <Button Style="{StaticResource MenuButtonStyle}" x:Name="homeBtn" Clicked="OnLockButtonClicked" />
+                                    </StackLayout>
+                                    <StackLayout Orientation="Horizontal">
+                                        <controls:TintedImage TintColor="{StaticResource SecondaryColor}" Source="qrcode.png" WidthRequest="24" Margin="15,0" />
+                                        <Button Style="{StaticResource MenuButtonStyle}" x:Name="scanQRBtn" Clicked="OnBarcodeBtnClicked" />
+                                    </StackLayout>
+                                    <StackLayout Orientation="Horizontal">
+                                        <controls:TintedImage TintColor="{StaticResource SecondaryColor}" Source="myqrcode.png" WidthRequest="22" Margin="15,0" />
+                                        <Button Style="{StaticResource MenuButtonStyle}" x:Name="myQRBtn" Clicked="OnMyQRClicked" />
+                                    </StackLayout>
+                                    <StackLayout Orientation="Horizontal">
+                                        <controls:TintedImage TintColor="{StaticResource SecondaryColor}" Source="search.png" WidthRequest="24" Margin="15,0" />
+                                        <Button Style="{StaticResource MenuButtonStyle}" x:Name="searchBtn" Clicked="OnSearchBtnClicked" />
+                                    </StackLayout>
+                                    <!--<StackLayout Orientation="Horizontal">
                                         <controls:TintedImage TintColor="{StaticResource SecondaryColor}" Source="refresh.png" WidthRequest="24" Margin="15,0" />
                                         <Button Style="{StaticResource MenuButtonStyle}" x:Name="refreshBtn" Clicked="OnRefreshButtonClicked" />
-                                    </StackLayout>
+                                    </StackLayout>-->
                                     <StackLayout Orientation="Horizontal">
                                         <controls:TintedImage TintColor="{StaticResource SecondaryColor}" Source="browser.png" WidthRequest="24" Margin="15,0" />
                                         <Button Style="{StaticResource MenuButtonStyle}" x:Name="openBrowserBtn" Clicked="OnOpenBrowserButtonClicked" />
@@ -164,20 +172,20 @@
                         <StackLayout Orientation="Horizontal" Margin="20,0,20,0">
                             <local:ImageButton Source="home.png" WidthRequest="24" HorizontalOptions="Start">
                                 <Image.GestureRecognizers>
-                                    <TapGestureRecognizer Tapped="OnHomeButtonClicked" />
-                                </Image.GestureRecognizers>
-                            </local:ImageButton>
-                            <local:ImageButton Source="lock.png" WidthRequest="26" Margin="20,0">
-                                <Image.GestureRecognizers>
                                     <TapGestureRecognizer Tapped="OnLockButtonClicked" />
                                 </Image.GestureRecognizers>
                             </local:ImageButton>
-                            <local:ImageButton Source="qrcode.png" WidthRequest="30">
+                            <!--<local:ImageButton Source="lock.png" WidthRequest="26" Margin="20,0">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnLockButtonClicked" />
+                                </Image.GestureRecognizers>
+                            </local:ImageButton>-->
+                            <local:ImageButton Source="qrcode.png" WidthRequest="24" Margin="20,0">
                                 <Image.GestureRecognizers>
                                     <TapGestureRecognizer Tapped="OnBarcodeBtnClicked" />
                                 </Image.GestureRecognizers>
                             </local:ImageButton>
-                            <local:ImageButton Source="search.png" WidthRequest="24" Margin="20,0">
+                            <local:ImageButton Source="search.png" WidthRequest="24">
                                 <Image.GestureRecognizers>
                                     <TapGestureRecognizer Tapped="OnSearchBtnClicked" />
                                 </Image.GestureRecognizers>

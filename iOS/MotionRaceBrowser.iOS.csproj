@@ -215,6 +215,7 @@
     <BundleResource Include="Resources\qrcode.png" />
     <BundleResource Include="Resources\scan_qr_target.png" />
     <BundleResource Include="Resources\search.png" />
+    <BundleResource Include="Resources\myqrcode.png" />
   </ItemGroup>
   <Import Project="..\MotionRaceBrowser\MotionRaceBrowser.projitems" Label="Shared" Condition="Exists('..\MotionRaceBrowser\MotionRaceBrowser.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />

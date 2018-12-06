@@ -9,6 +9,7 @@ namespace MotionRaceBrowser.Constant
         public static string SIGNUP = "https://app.motionsrace.com/signup/index.aspx";
         public static string LOGOUT = "logout.aspx";
         public static string SEARCH_CAR = "welcome.aspx?searchText=";
+        public static string MY_QR = "person/myqr.aspx";
 
 #if __IOS__
         public static string ApplicaitonId = "237C451B-D1AC-41AF-A8FB-C8480C8A6B05";

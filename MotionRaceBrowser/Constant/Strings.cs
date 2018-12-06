@@ -73,6 +73,16 @@ namespace MotionRaceBrowser.Constant
             get => IsSwedish ? "Läs QR-kod" : "Scan QR";
         }
 
+        public string MyQR
+        {
+            get => IsSwedish ? "Min QR" : "My QR";
+        }
+
+        public string Start
+        {
+            get => IsSwedish ? "Start" : "Start";
+        }
+
         public string GoBack
         {
             get => IsSwedish ? "Gå tillbaka" : "Go back";
