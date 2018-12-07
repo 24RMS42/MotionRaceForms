@@ -197,6 +197,7 @@
     <Compile Include="Renderers\BaseWebviewRenderer.cs" />
     <Compile Include="Renderers\VerticalSlideEffect.cs" />
     <Compile Include="Helpers\IClearCookiesImplementation.cs" />
+    <Compile Include="Helpers\IGetLanguageImplementation.cs" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\slide1.png" />

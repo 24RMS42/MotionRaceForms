@@ -187,6 +187,7 @@
     <Compile Include="Renderers\BaseEntryRenderer.cs" />
     <Compile Include="Renderers\BaseWebviewRenderer.cs" />
     <Compile Include="Renderers\VerticalSlideEffect.cs" />
+    <Compile Include="Helpers\IGetLanguageImplementation.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />

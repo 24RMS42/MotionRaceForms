@@ -1,4 +1,7 @@
 ﻿using System;
+using MotionRaceBrowser.Interface;
+using Xamarin.Forms;
+
 namespace MotionRaceBrowser.Constant
 {
     public class Strings
@@ -7,8 +10,7 @@ namespace MotionRaceBrowser.Constant
 
         public Strings()
         {
-            var deviceLanguage = System.Globalization.CultureInfo.CurrentUICulture.IetfLanguageTag;
-            IsSwedish = deviceLanguage == "sv-SE";
+            IsSwedish = DependencyService.Get<IGetLanguage>().IsSwedish();
         }
 
         public string Login

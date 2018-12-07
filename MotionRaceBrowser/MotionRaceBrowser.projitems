@@ -44,6 +44,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Control\VerticalSlideEffect.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interface\IClearCookies.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Service\MessageServiceClass.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interface\IGetLanguage.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Views\" />
