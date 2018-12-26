@@ -21,7 +21,7 @@
 	<string>LaunchScreen</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
-		<string>armv7</string>
+		<string>arm64</string>
 	</array>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
@@ -29,7 +29,18 @@
 	</array>
 	<key>XSAppIconAssets</key>
 	<string>Assets.xcassets/AppIcon.appiconset</string>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
+	<key>NSCameraUsageDescription</key>
+	<string>Twitch will use your camera to read QR codes so you can connect faster to challenge participants</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Twitch will use your photo to get QR codes so you can connect faster to challenge participants</string>
+	<key>UIRequiresFullScreen</key>
+	<true/>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>4</string>
 </dict>
 </plist>
