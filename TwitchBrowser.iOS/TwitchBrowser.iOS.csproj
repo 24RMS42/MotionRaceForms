@@ -179,6 +179,21 @@
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json" />
     <ImageAsset Include="Assets.xcassets\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-20x20%402x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-20x20%403x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-29x29%402x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-29x29%403x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-40x40%402x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-40x40%403x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-60x60%402x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-60x60%403x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-20x20%401x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-29x29%401x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-40x40%401x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-76x76%401x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-76x76%402x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-83.5x83.5%402x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\ItunesArtwork%402x.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
@@ -190,10 +205,47 @@
     <None Include="Info.plist" />
     <None Include="Entitlements.plist" />
     <None Include="packages.config" />
+    <None Include="..\iOS\Helpers\TranslateExtension.txt">
+      <Link>Helpers\TranslateExtension.txt</Link>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
+    <Compile Include="..\iOS\Helpers\IClearCookiesImplementation.cs">
+      <Link>Helpers\IClearCookiesImplementation.cs</Link>
+    </Compile>
+    <Compile Include="..\iOS\Helpers\IGetLanguageImplementation.cs">
+      <Link>Helpers\IGetLanguageImplementation.cs</Link>
+    </Compile>
+    <Compile Include="..\iOS\Renderers\BaseEntryRenderer.cs">
+      <Link>Renderers\BaseEntryRenderer.cs</Link>
+    </Compile>
+    <Compile Include="..\iOS\Renderers\BaseWebviewRenderer.cs">
+      <Link>Renderers\BaseWebviewRenderer.cs</Link>
+    </Compile>
+    <Compile Include="..\iOS\Renderers\VerticalSlideEffect.cs">
+      <Link>Renderers\VerticalSlideEffect.cs</Link>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\back.png" />
+    <BundleResource Include="Resources\browser.png" />
+    <BundleResource Include="Resources\camera.png" />
+    <BundleResource Include="Resources\home.png" />
+    <BundleResource Include="Resources\left_arrow.png" />
+    <BundleResource Include="Resources\loading.gif" />
+    <BundleResource Include="Resources\lock.png" />
+    <BundleResource Include="Resources\logout.png" />
+    <BundleResource Include="Resources\menu.png" />
+    <BundleResource Include="Resources\myqrcode.png" />
+    <BundleResource Include="Resources\qrcode.png" />
+    <BundleResource Include="Resources\refresh.png" />
+    <BundleResource Include="Resources\scan_qr_target.png" />
+    <BundleResource Include="Resources\search.png" />
+    <BundleResource Include="Resources\signInBackground.png" />
+    <BundleResource Include="Resources\signInLogo.png" />
+    <BundleResource Include="Resources\slide1.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Forms.3.1.0.697729\build\netstandard2.0\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.3.1.0.697729\build\netstandard2.0\Xamarin.Forms.targets')" />
