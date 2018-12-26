@@ -29,7 +29,7 @@
                         <Label
                             HorizontalOptions="Center"
                             x:Name="welcomeToLbl"
-                            Text="Welcome to MotionRace"
+                            Text=""
                             TextColor="{ StaticResource DarkBlueColor }"/>
                         
                         <!---EMAIL FIELD-->

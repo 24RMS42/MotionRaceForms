@@ -53,6 +53,11 @@ namespace MotionRaceBrowser.Constant
             get => IsSwedish ? "Välkommen till MotionsRace" : "Welcome to MotionsRace";
         }
 
+        public string WelcomeToTwitch
+        {
+            get => IsSwedish ? "Välkommen till Twitch" : "Welcome to Twitch";
+        }
+
         public string AppTokenOutdated
         {
             get => IsSwedish ?

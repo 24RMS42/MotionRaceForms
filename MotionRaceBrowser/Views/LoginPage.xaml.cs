@@ -29,9 +29,14 @@ namespace MotionRaceBrowser.Views
             stringInstance = new Strings();
             email.Placeholder = stringInstance.UserName;
             password.Placeholder = stringInstance.Password;
-            welcomeToLbl.Text = stringInstance.WelcomeToRace;
             loginButton.Text = stringInstance.Login;
             signupButton.Text = stringInstance.NewParticipant;
+
+#if MotionsRace
+            welcomeToLbl.Text = stringInstance.WelcomeToRace;
+#else
+            //welcomeToLbl.Text = stringInstance.WelcomeToTwitch;
+#endif
 
 #if DEBUG
             email.Text = "erix";

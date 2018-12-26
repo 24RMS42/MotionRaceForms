@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>CFBundleName</key>
-	<string>TwitchBrowser</string>
+	<string>Twitch Health Challenge lite</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.companyraces.TwitchBrowser</string>
+	<string>com.companyraces.twitchbrowser</string>
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
 	<key>LSRequiresIPhoneOS</key>
