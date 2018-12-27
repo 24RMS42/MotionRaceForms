@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MotionRaceBrowser.Droid", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TwitchBrowser.iOS", "TwitchBrowser.iOS\TwitchBrowser.iOS.csproj", "{35262ABB-A92D-41EE-A714-590C8C40EBAA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TwitchBrowser.Droid", "TwitchBrowser.Droid\TwitchBrowser.Droid.csproj", "{6839A5AC-7A8F-4142-A6BE-C2A0D09B2117}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|iPhoneSimulator = Debug|iPhoneSimulator
@@ -55,5 +57,17 @@ Global
 		{35262ABB-A92D-41EE-A714-590C8C40EBAA}.Debug|Any CPU.Build.0 = Debug|iPhoneSimulator
 		{35262ABB-A92D-41EE-A714-590C8C40EBAA}.Release|Any CPU.ActiveCfg = Release|iPhone
 		{35262ABB-A92D-41EE-A714-590C8C40EBAA}.Release|Any CPU.Build.0 = Release|iPhone
+		{6839A5AC-7A8F-4142-A6BE-C2A0D09B2117}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{6839A5AC-7A8F-4142-A6BE-C2A0D09B2117}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{6839A5AC-7A8F-4142-A6BE-C2A0D09B2117}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{6839A5AC-7A8F-4142-A6BE-C2A0D09B2117}.Release|iPhone.Build.0 = Release|Any CPU
+		{6839A5AC-7A8F-4142-A6BE-C2A0D09B2117}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{6839A5AC-7A8F-4142-A6BE-C2A0D09B2117}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+		{6839A5AC-7A8F-4142-A6BE-C2A0D09B2117}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{6839A5AC-7A8F-4142-A6BE-C2A0D09B2117}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{6839A5AC-7A8F-4142-A6BE-C2A0D09B2117}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6839A5AC-7A8F-4142-A6BE-C2A0D09B2117}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6839A5AC-7A8F-4142-A6BE-C2A0D09B2117}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6839A5AC-7A8F-4142-A6BE-C2A0D09B2117}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

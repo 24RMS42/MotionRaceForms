@@ -9,6 +9,11 @@ using MotionRaceBrowser.Droid.Renderers;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 
+#if MotionsRace
+#else
+using TwitchBrowser.Droid;
+#endif
+
 [assembly: ExportRenderer(typeof(Xamarin.Forms.WebView), typeof(BaseWebviewRenderer))]
 namespace MotionRaceBrowser.Droid.Renderers
 {
