@@ -12,7 +12,7 @@
         public static string PrimaryColor = "#42d06e";
         public static string SecondaryColor = "#000";
         public static string MenuColor = "#42d06e";
-        public static string BottomBarColor = "#40CBE2";
+        public static string BottomBarColor = "#C0C0C0";
 #endif
     }
 }
