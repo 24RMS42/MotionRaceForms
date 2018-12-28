@@ -246,7 +246,7 @@
     <BundleResource Include="Resources\search.png" />
     <BundleResource Include="Resources\signInBackground.png" />
     <BundleResource Include="Resources\signInLogo.png" />
-    <BundleResource Include="Resources\slide1.png" />
+    <BundleResource Include="Resources\slide1.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Forms.3.1.0.697729\build\netstandard2.0\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.3.1.0.697729\build\netstandard2.0\Xamarin.Forms.targets')" />

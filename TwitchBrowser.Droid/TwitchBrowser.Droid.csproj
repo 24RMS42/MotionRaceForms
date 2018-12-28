@@ -233,7 +233,7 @@
     <AndroidResource Include="Resources\drawable\search.png" />
     <AndroidResource Include="Resources\drawable\signInBackground.png" />
     <AndroidResource Include="Resources\drawable\signInLogo.png" />
-    <AndroidResource Include="Resources\drawable\slide1.png" />
+    <AndroidResource Include="Resources\drawable\slide1.jpg" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable\" />

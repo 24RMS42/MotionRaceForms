@@ -45,6 +45,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Interface\IClearCookies.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Service\MessageServiceClass.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interface\IGetLanguage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Constant\Colors.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Views\" />

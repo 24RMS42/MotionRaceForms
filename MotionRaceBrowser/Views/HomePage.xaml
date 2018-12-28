@@ -126,7 +126,7 @@
                                     </RowDefinition>
                                 </Grid.RowDefinitions>
 
-                                <StackLayout Grid.Row="1" Grid.Column="1" BackgroundColor="{StaticResource LightGreyColor}">
+                                <StackLayout Grid.Row="1" Grid.Column="1" BackgroundColor="{DynamicResource MenuColor}">
                                     <StackLayout Orientation="Horizontal">
                                         <controls:TintedImage TintColor="{StaticResource SecondaryColor}" Source="back.png" WidthRequest="24" Margin="15,0" />
                                         <Button Style="{StaticResource MenuButtonStyle}" x:Name="goBackBtn" Clicked="OnBackButtonClicked" />
@@ -168,7 +168,7 @@
                     </RelativeLayout>
 
                     <!--Bottom Bar-->
-                    <Grid Grid.Row="1" BackgroundColor="{StaticResource LightGreyColor}">
+                    <Grid Grid.Row="1" BackgroundColor="{DynamicResource BottomBarColor}">
                         <StackLayout Orientation="Horizontal" Margin="20,0,20,0">
                             <local:ImageButton Source="home.png" WidthRequest="24" HorizontalOptions="Start">
                                 <Image.GestureRecognizers>

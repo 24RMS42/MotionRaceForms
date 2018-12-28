@@ -3,11 +3,10 @@
 	<Application.Resources>
         <ResourceDictionary>
 
-            <Color x:Key="PrimaryColor">#F25A0F</Color>
+            <Color x:Key="PrimaryColor">#163e55</Color>
             <Color x:Key="SecondaryColor">#0000FF</Color>
-            <Color x:Key="LightGreyColor">#C0C0C0</Color>
-            <Color x:Key="LightBlueColor">#3277b4</Color>
-            <Color x:Key="DarkBlueColor">#163e55</Color>
+            <Color x:Key="MenuColor">#C0C0C0</Color>
+            <Color x:Key="BottomBarColor">#C0C0C0</Color>
             <x:Double x:Key="BaseFontSize">16</x:Double>
             <x:Double x:Key="BaseButtonHeight">44</x:Double>
             
@@ -23,13 +22,13 @@
                 <Setter Property="WidthRequest" Value="50" />
                 <Setter Property="BorderWidth" Value="1" />
                 <Setter Property="BorderRadius" Value="15" />
-                <Setter Property="BackgroundColor" Value="{StaticResource DarkBlueColor}" />
-                <Setter Property="BorderColor" Value="{StaticResource DarkBlueColor}" />
+                <Setter Property="BackgroundColor" Value="{DynamicResource PrimaryColor}" />
+                <Setter Property="BorderColor" Value="{DynamicResource PrimaryColor}" />
                 <Setter Property="TextColor" Value="White" />
             </Style>
             <Style x:Key="MenuButtonStyle" TargetType="Button">
                 <Setter Property="BackgroundColor" Value="Transparent" />
-                <Setter Property="TextColor" Value="{StaticResource SecondaryColor}" />
+                <Setter Property="TextColor" Value="{DynamicResource SecondaryColor}" />
             </Style>
             <Style x:Key="CustomEntry" TargetType="Entry">
                 <Setter Property="BackgroundColor" Value="White" />

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using MotionRaceBrowser.Constant;
 using MotionRaceBrowser.Network;
 using MotionRaceBrowser.Util;
 using MotionRaceBrowser.Views;
@@ -23,6 +24,12 @@ namespace MotionRaceBrowser
             InitializeComponent();
 
             G_HTTP_CLIENT = new HttpHandler();
+
+            //Apply dynamic theme color
+            App.Current.Resources["PrimaryColor"] = Color.FromHex(Colors.PrimaryColor);
+            App.Current.Resources["SecondaryColor"] = Color.FromHex(Colors.SecondaryColor);
+            App.Current.Resources["MenuColor"] = Color.FromHex(Colors.MenuColor);
+            App.Current.Resources["BottomBarColor"] = Color.FromHex(Colors.BottomBarColor);
 
             IDictionary<string, object> properties = Current.Properties;
             if (properties.ContainsKey("baseUrl"))

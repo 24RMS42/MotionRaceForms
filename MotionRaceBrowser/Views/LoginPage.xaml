@@ -30,7 +30,7 @@
                             HorizontalOptions="Center"
                             x:Name="welcomeToLbl"
                             Text=""
-                            TextColor="{ StaticResource DarkBlueColor }"/>
+                            TextColor="{DynamicResource PrimaryColor}"/>
                         
                         <!---EMAIL FIELD-->
                         <StackLayout
