@@ -22,6 +22,10 @@
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Resources\AppResources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\RegisterPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
@@ -46,6 +50,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)Service\MessageServiceClass.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interface\IGetLanguage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Constant\Colors.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\RegisterPage.xaml.cs">
+      <DependentUpon>RegisterPage.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Views\" />

@@ -61,7 +61,8 @@ namespace MotionRaceBrowser.Views
 
         void OnSignupButtonClicked(object sender, EventArgs args)
         {
-            Device.OpenUri(new Uri(Constants.SIGNUP));
+            //Device.OpenUri(new Uri(Constants.SIGNUP));
+            Navigation.PushAsync(new RegisterPage());
         }
 
         private bool CheckValidate()
