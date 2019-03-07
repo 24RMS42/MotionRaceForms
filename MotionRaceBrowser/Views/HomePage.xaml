@@ -170,7 +170,12 @@
                     <!--Bottom Bar-->
                     <Grid Grid.Row="1" BackgroundColor="{DynamicResource BottomBarColor}">
                         <StackLayout Orientation="Horizontal" Margin="20,0,20,0">
-                            <local:ImageButton Source="home.png" WidthRequest="24" HorizontalOptions="Start">
+                            <local:ImageButton Source="add.png" WidthRequest="24" HorizontalOptions="Start">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnRegisterClicked" />
+                                </Image.GestureRecognizers>
+                            </local:ImageButton>
+                            <local:ImageButton Source="home.png" WidthRequest="24" Margin="20,0">
                                 <Image.GestureRecognizers>
                                     <TapGestureRecognizer Tapped="OnLockButtonClicked" />
                                 </Image.GestureRecognizers>
@@ -180,12 +185,12 @@
                                     <TapGestureRecognizer Tapped="OnLockButtonClicked" />
                                 </Image.GestureRecognizers>
                             </local:ImageButton>-->
-                            <local:ImageButton Source="qrcode.png" WidthRequest="24" Margin="20,0">
+                            <local:ImageButton Source="qrcode.png" WidthRequest="24">
                                 <Image.GestureRecognizers>
                                     <TapGestureRecognizer Tapped="OnBarcodeBtnClicked" />
                                 </Image.GestureRecognizers>
                             </local:ImageButton>
-                            <local:ImageButton Source="search.png" WidthRequest="24">
+                            <local:ImageButton Source="search.png" WidthRequest="24" Margin="20,0">
                                 <Image.GestureRecognizers>
                                     <TapGestureRecognizer Tapped="OnSearchBtnClicked" />
                                 </Image.GestureRecognizers>

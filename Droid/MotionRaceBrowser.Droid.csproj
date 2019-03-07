@@ -16,7 +16,6 @@
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
     <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
     <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
-    <AndroidUseLatestPlatformSdk>false</AndroidUseLatestPlatformSdk>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -221,6 +220,7 @@
     <AndroidResource Include="Resources\drawable\scan_qr_target.png" />
     <AndroidResource Include="Resources\drawable\search.png" />
     <AndroidResource Include="Resources\drawable\myqrcode.png" />
+    <AndroidResource Include="Resources\drawable\add.png" />
   </ItemGroup>
   <Import Project="..\MotionRaceBrowser\MotionRaceBrowser.projitems" Label="Shared" Condition="Exists('..\MotionRaceBrowser\MotionRaceBrowser.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />

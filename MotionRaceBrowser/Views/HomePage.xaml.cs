@@ -217,6 +217,11 @@ namespace MotionRaceBrowser.Views
             }
         }
 
+        void OnRegisterClicked(object sender, EventArgs e)
+        {
+            webView.Source = App.BaseUrl + Constants.REGISTER_NEW_ACTIVITY;
+        }
+
         void OnBackArrowClicked(object sender, EventArgs e)
         {
             ToggleSearchBox();
@@ -225,6 +230,7 @@ namespace MotionRaceBrowser.Views
         void RequestLogin()
         {
             var deviceLanguage = System.Globalization.CultureInfo.CurrentUICulture.IetfLanguageTag;
+            Console.WriteLine("device:" + deviceLanguage);
             requestUrl = App.BaseUrl + "applogin.aspx?applicationid=" + Constants.ApplicaitonId.ToLower() + "&loginid=" + App.LoginId + "&ticket=" + App.HashedSecret + "&language=" + deviceLanguage;
             webView.Source = requestUrl;
         }

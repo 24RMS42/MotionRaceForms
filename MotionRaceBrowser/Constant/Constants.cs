@@ -27,6 +27,7 @@ namespace MotionRaceBrowser.Constant
 #endif
 
         public static string LOGIN_PATTERN = "/login.aspx";
+        public static string REGISTER_NEW_ACTIVITY = "/training/edit_2012.aspx";
         public static string LOGOUT = "logout.aspx";
         public static string SEARCH_CAR = "welcome.aspx?searchText=";
         public static string MY_QR = "person/myqr.aspx";
