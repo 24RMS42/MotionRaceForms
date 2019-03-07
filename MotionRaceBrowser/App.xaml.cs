@@ -6,6 +6,9 @@ using MotionRaceBrowser.Network;
 using MotionRaceBrowser.Util;
 using MotionRaceBrowser.Views;
 using Xamarin.Forms;
+using Microsoft.AppCenter;
+using Microsoft.AppCenter.Analytics;
+using Microsoft.AppCenter.Crashes;
 
 namespace MotionRaceBrowser
 {
@@ -26,10 +29,10 @@ namespace MotionRaceBrowser
             G_HTTP_CLIENT = new HttpHandler();
 
             //Apply dynamic theme color
-            App.Current.Resources["PrimaryColor"] = Color.FromHex(Colors.PrimaryColor);
-            App.Current.Resources["SecondaryColor"] = Color.FromHex(Colors.SecondaryColor);
-            App.Current.Resources["MenuColor"] = Color.FromHex(Colors.MenuColor);
-            App.Current.Resources["BottomBarColor"] = Color.FromHex(Colors.BottomBarColor);
+            Current.Resources["PrimaryColor"] = Color.FromHex(Colors.PrimaryColor);
+            Current.Resources["SecondaryColor"] = Color.FromHex(Colors.SecondaryColor);
+            Current.Resources["MenuColor"] = Color.FromHex(Colors.MenuColor);
+            Current.Resources["BottomBarColor"] = Color.FromHex(Colors.BottomBarColor);
 
             IDictionary<string, object> properties = Current.Properties;
             if (properties.ContainsKey("baseUrl"))
@@ -47,7 +50,7 @@ namespace MotionRaceBrowser
 
         protected override void OnStart()
         {
-            // Handle when your app starts
+            AppCenter.Start("ios=c7955734-5e47-4d8d-b114-9a8d880f64f1;android=00303ec0-688f-40d2-afc5-e628ad7fcec0", typeof(Analytics), typeof(Crashes));
         }
 
         protected override void OnSleep()
