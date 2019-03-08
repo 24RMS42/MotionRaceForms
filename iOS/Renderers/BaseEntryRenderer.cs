@@ -19,6 +19,9 @@ namespace MotionRaceBrowser.iOS.Renderers
             base.OnElementChanged(e);
 
             Entry item = this.Element;
+            if (item == null)
+                return;
+
             if (Control != null && item.ReturnType == ReturnType.Search)
             {
                 Control.BorderStyle = UITextBorderStyle.None;

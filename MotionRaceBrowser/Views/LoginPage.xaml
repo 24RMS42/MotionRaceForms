@@ -12,11 +12,11 @@
                 VerticalOptions="FillAndExpand" >
 
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="40*" />
-                    <RowDefinition Height="60*" />
+                    <RowDefinition Height="30*" />
+                    <RowDefinition Height="70*" />
                 </Grid.RowDefinitions>
 
-                <Grid Grid.Row="0" Margin="0,50,0,0" Padding="20">
+                <Grid Grid.Row="0" Margin="0,50,0,0" Padding="0">
                     <Image WidthRequest="50" Source="signInLogo.png"/>
                 </Grid>
                 
