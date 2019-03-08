@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Acr.UserDialogs;
 using MotionRaceBrowser.Constant;
+using MotionRaceBrowser.Interface;
 using Newtonsoft.Json.Linq;
 using Xamarin.Forms;
 
@@ -100,7 +101,8 @@ namespace MotionRaceBrowser.Network
         {
             try
             {
-                var deviceLanguage = System.Globalization.CultureInfo.CurrentUICulture.IetfLanguageTag;
+                bool isSwedish = DependencyService.Get<IGetLanguage>().IsSwedish();
+                var deviceLanguage = isSwedish ? "sv" : "en";
 
                 HMACSHA1 hashAlgorithm = new HMACSHA1();
                 hashAlgorithm.Key = Encoding.ASCII.GetBytes(Constants.ApplicaitonSecret.ToLower());

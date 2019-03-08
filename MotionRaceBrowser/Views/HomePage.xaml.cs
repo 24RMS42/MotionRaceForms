@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading.Tasks;
+using Microsoft.AppCenter.Crashes;
 using MotionRaceBrowser.Constant;
 using MotionRaceBrowser.Interface;
 using MotionRaceBrowser.Service;
@@ -148,7 +149,8 @@ namespace MotionRaceBrowser.Views
             var requestedUrl = currentPageUrl.Substring(baseUrl.Length, currentPageUrl.Length - baseUrl.Length);
             requestedUrl = System.Web.HttpUtility.UrlEncode(requestedUrl);
 
-            var deviceLanguage = System.Globalization.CultureInfo.CurrentUICulture.IetfLanguageTag;
+            bool isSwedish = DependencyService.Get<IGetLanguage>().IsSwedish();
+            var deviceLanguage = isSwedish ? "sv" : "en";
             requestUrl = App.BaseUrl + "applogin.aspx?applicationid=" + Constants.ApplicaitonId.ToLower() + "&loginid=" + App.LoginId + "&ticket=" + App.HashedSecret + "&language=" + deviceLanguage + "&wantedURL=" + requestedUrl;
             Device.OpenUri(new Uri(requestUrl));
         }
@@ -229,7 +231,8 @@ namespace MotionRaceBrowser.Views
 
         void RequestLogin()
         {
-            var deviceLanguage = System.Globalization.CultureInfo.CurrentUICulture.IetfLanguageTag;
+            bool isSwedish = DependencyService.Get<IGetLanguage>().IsSwedish();
+            var deviceLanguage = isSwedish ? "sv" : "en";
             Console.WriteLine("device:" + deviceLanguage);
             requestUrl = App.BaseUrl + "applogin.aspx?applicationid=" + Constants.ApplicaitonId.ToLower() + "&loginid=" + App.LoginId + "&ticket=" + App.HashedSecret + "&language=" + deviceLanguage;
             webView.Source = requestUrl;
