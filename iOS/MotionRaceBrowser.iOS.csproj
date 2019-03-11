@@ -202,6 +202,7 @@
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
+    <InterfaceDefinition Include="LaunchScreeniPad.storyboard" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -237,6 +238,7 @@
     <BundleResource Include="Resources\search.png" />
     <BundleResource Include="Resources\myqrcode.png" />
     <BundleResource Include="Resources\add.png" />
+    <BundleResource Include="Resources\splashiPad.jpg" />
   </ItemGroup>
   <Import Project="..\MotionRaceBrowser\MotionRaceBrowser.projitems" Label="Shared" Condition="Exists('..\MotionRaceBrowser\MotionRaceBrowser.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />

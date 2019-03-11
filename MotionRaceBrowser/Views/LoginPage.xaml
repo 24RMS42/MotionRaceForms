@@ -27,7 +27,11 @@
                     VerticalOptions="Start" >
                     <StackLayout Orientation="Vertical">
                         <Label
-                            HorizontalOptions="Center"
+                            BackgroundColor="#80FFFFFF"
+                            HorizontalOptions="FillAndExpand"
+                            HorizontalTextAlignment="Center"
+                            VerticalTextAlignment="Center"
+                            HeightRequest="32"
                             x:Name="welcomeToLbl"
                             Text=""
                             TextColor="{DynamicResource PrimaryColor}"/>

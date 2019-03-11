@@ -39,7 +39,7 @@ namespace MotionRaceBrowser.Views
 #endif
 
 #if DEBUG
-            email.Text = "erix";
+            email.Text = "Berit2";
             password.Text = "123";
 #endif
             email.ReturnCommand = new Command(() => password.Focus());

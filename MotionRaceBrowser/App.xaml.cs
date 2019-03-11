@@ -50,7 +50,9 @@ namespace MotionRaceBrowser
 
         protected override void OnStart()
         {
+            #if !DEBUG
             AppCenter.Start("ios=c7955734-5e47-4d8d-b114-9a8d880f64f1;android=00303ec0-688f-40d2-afc5-e628ad7fcec0", typeof(Analytics), typeof(Crashes));
+            #endif
         }
 
         protected override void OnSleep()
