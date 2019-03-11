@@ -8,8 +8,6 @@
 	<string>MotionsRace</string>
 	<key>CFBundleIdentifier</key>
 	<string>com.companyraces.motionsracebrowser</string>
-	<key>CFBundleShortVersionString</key>
-	<string>1.1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>MinimumOSVersion</key>
@@ -32,9 +30,6 @@
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationPortraitUpsideDown</string>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
-		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>XSAppIconAssets</key>
 	<string>Assets.xcassets/AppIcon.appiconset</string>
@@ -47,7 +42,11 @@
 	<string>MotionsRace will use your camera to read QR codes so you can connect faster to challenge participants</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>MotionsRace will use your photo to get QR codes so you can connect faster to challenge participants</string>
+	<key>CFBundleShortVersionString</key>
+	<string>2.2</string>
 	<key>CFBundleVersion</key>
-	<string>22</string>
+	<string>24</string>
+	<key>UIRequiresFullScreen</key>
+	<true/>
 </dict>
 </plist>
