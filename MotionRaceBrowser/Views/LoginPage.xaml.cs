@@ -36,6 +36,7 @@ namespace MotionRaceBrowser.Views
             welcomeToLbl.Text = stringInstance.WelcomeToRace;
 #else
             //welcomeToLbl.Text = stringInstance.WelcomeToTwitch;
+            welcomeToLbl.IsVisible = false;
 #endif
 
 #if DEBUG
