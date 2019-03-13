@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using MotionRaceBrowser.Constant;
 using MotionRaceBrowser.Service;
+using MotionRaceBrowser.ViewModels;
 using Xamarin.Forms;
 #if __ANDROID__
 using Plugin.Permissions;
@@ -17,6 +18,7 @@ namespace MotionRaceBrowser.Views
         public LoginPage()
         {
             InitializeComponent();
+            BindingContext = new LoginPageModel();
             NavigationPage.SetHasNavigationBar(this, false);
 
             //login event from Done button click
