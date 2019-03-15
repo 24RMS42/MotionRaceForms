@@ -8,6 +8,10 @@ using MotionRaceBrowser.Interface;
 using MotionRaceBrowser.Service;
 using Xamarin.Forms;
 using ZXing;
+#if __ANDROID__
+using Plugin.Permissions;
+using Plugin.Permissions.Abstractions;
+#endif
 
 namespace MotionRaceBrowser.Views
 {
@@ -35,6 +39,7 @@ namespace MotionRaceBrowser.Views
             openBrowserBtn.Text = stringInstance.OpenInSafari;
 #else
             openBrowserBtn.Text = stringInstance.OpenInBrowser;
+            AskPermission();
 #endif
 
             RequestLogin();
@@ -318,5 +323,38 @@ namespace MotionRaceBrowser.Views
 
             afterHideCallback?.Invoke();
         }
+
+#if __ANDROID__
+        async void AskPermission()
+        {
+            try
+            {
+                var status = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Storage);
+                if (status != PermissionStatus.Granted)
+                {
+                    if (await CrossPermissions.Current.ShouldShowRequestPermissionRationaleAsync(Permission.Storage))
+                    {
+                        await DisplayAlert("Need Storage permission", "", "OK");
+                    }
+
+                    var results = await CrossPermissions.Current.RequestPermissionsAsync(Permission.Storage);
+                    if (results.ContainsKey(Permission.Storage))
+                        status = results[Permission.Storage];
+                }
+
+                if (status == PermissionStatus.Granted)
+                {
+
+                }
+                else if (status != PermissionStatus.Unknown)
+                {
+                    await DisplayAlert("Storage Permission Denied", "", "OK");
+                }
+            }
+            catch (Exception ex)
+            {
+            }
+        }
+#endif
     }
 }
