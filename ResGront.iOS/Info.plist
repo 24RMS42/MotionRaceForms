@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>CFBundleIdentifier</key>
-	<string>com.companyraces.resgront</string>
+	<string>com.delivery.resgront</string>
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
@@ -46,5 +46,7 @@
 	<string>ResGront will use your camera to read QR codes so you can connect faster to challenge participants</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>ResGront will use your photo to get QR codes so you can connect faster to challenge participants</string>
+	<key>UILaunchStoryboardName~ipad</key>
+	<string>LaunchScreeniPad.storyboard</string>
 </dict>
 </plist>
