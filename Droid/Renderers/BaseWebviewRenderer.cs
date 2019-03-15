@@ -10,8 +10,10 @@ using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 
 #if MotionsRace
-#else
+#elif Twitch
 using TwitchBrowser.Droid;
+#else
+using ResGront.Droid;
 #endif
 
 [assembly: ExportRenderer(typeof(Xamarin.Forms.WebView), typeof(BaseWebviewRenderer))]
