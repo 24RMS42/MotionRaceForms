@@ -250,9 +250,8 @@
     <AndroidResource Include="Resources\drawable\search.png" />
     <AndroidResource Include="Resources\drawable\signInBackground.png" />
     <AndroidResource Include="Resources\drawable\signInLogo.png" />
-    <AndroidResource Include="Resources\drawable\slide1.png" />
-    <AndroidResource Include="Resources\drawable\splashiPad.jpg" />
     <AndroidResource Include="Resources\values\styles.xml" />
+    <AndroidResource Include="Resources\drawable\splashiPad.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable\" />

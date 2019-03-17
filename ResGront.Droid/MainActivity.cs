@@ -14,7 +14,7 @@ using MotionRaceBrowser;
 
 namespace ResGront.Droid
 {
-    [Activity(Label = "Res Gront", MainLauncher = true, Icon = "@mipmap/icon", Theme = "@style/MyTheme", ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation, ScreenOrientation = ScreenOrientation.Portrait)]
+    [Activity(Label = "Res Grönt", MainLauncher = true, Icon = "@mipmap/icon", Theme = "@style/MyTheme", ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation, ScreenOrientation = ScreenOrientation.Portrait)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
         public static IValueCallback UploadMessage;

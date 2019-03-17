@@ -3,10 +3,8 @@
 <plist version="1.0">
 <dict>
 	<key>CFBundleIdentifier</key>
-	<string>com.delivery.resgront</string>
+	<string>com.companyraces.resgront</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0</string>
-	<key>CFBundleVersion</key>
 	<string>1.0</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
@@ -36,7 +34,7 @@
 	<key>UIRequiresFullScreen</key>
 	<true/>
 	<key>CFBundleName</key>
-	<string>Res Gront</string>
+	<string>Res Grönt</string>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>
@@ -48,5 +46,7 @@
 	<string>ResGront will use your photo to get QR codes so you can connect faster to challenge participants</string>
 	<key>UILaunchStoryboardName~ipad</key>
 	<string>LaunchScreeniPad.storyboard</string>
+	<key>CFBundleVersion</key>
+	<string>2</string>
 </dict>
 </plist>
